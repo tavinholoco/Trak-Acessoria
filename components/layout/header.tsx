@@ -49,8 +49,12 @@ export function Header() {
                 href={item.href}
                 aria-current={isActive ? "true" : undefined}
                 className={cn(
-                  "px-3 py-2 font-sans text-xs font-bold uppercase tracking-[0.18em] transition-colors hover:text-primary",
-                  isActive ? "text-primary" : "text-foreground"
+                  // Texto sempre em foreground: vermelho (#D41F16) sobre preto
+                  // fica em 3.65:1 (< AA 4.5:1). O ativo é indicado pelo
+                  // sublinhado vermelho — acento de marca sem quebrar contraste.
+                  "px-3 py-2 font-sans text-xs font-bold uppercase tracking-[0.18em] text-foreground transition-colors hover:text-primary",
+                  isActive &&
+                    "underline decoration-primary decoration-2 underline-offset-4"
                 )}
               >
                 {item.label}

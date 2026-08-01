@@ -20,6 +20,25 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Testes
+
+Testes **unitários/componentes** com **Vitest + React Testing Library** e **E2E** com **Playwright** (+ `@axe-core/playwright` para acessibilidade WCAG AA).
+
+```bash
+npm run test:run        # unit/componente (uma vez)
+npm test                # watch mode
+npm run test:coverage   # com relatório e gate de cobertura
+npm run test:e2e        # E2E: chromium, firefox, webkit e mobile (375px)
+npm run test:e2e:ui     # E2E com UI mode (debugging interativo)
+```
+
+Primeira vez com Playwright: `npx playwright install` baixa os navegadores.
+
+- Config unit: `vitest.config.mts` + `vitest.setup.ts`
+- Config E2E: `playwright.config.ts` (porta 3100, servidor automático)
+- E2E: `e2e/smoke.spec.ts` (navegação, dark mode, menu mobile, a11y axe)
+- CI: `.github/workflows/ci.yml` (lint, typecheck, vitest + coverage, playwright)
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

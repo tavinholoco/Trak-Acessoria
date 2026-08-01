@@ -59,7 +59,9 @@
   --card-foreground: #0f0f0f;
   --popover: #f7f4ee;
   --popover-foreground: #0f0f0f;
-  --primary: #e1261c;
+  /* #E1261C (marca) escurecido p/ #D41F16: contraste AA 4.86:1 com
+     #F7F4EE em texto normal (a11y). O vermelho vivo fica p/ acentos/ring. */
+  --primary: #d41f16;
   --primary-foreground: #f7f4ee;
   --secondary: #e8e2d6;
   --secondary-foreground: #0f0f0f;
@@ -95,7 +97,8 @@
   --card-foreground: #f7f4ee;
   --popover: #161616;
   --popover-foreground: #f7f4ee;
-  --primary: #e1261c;
+  /* Mesmo ajuste de contraste AA (ver :root). */
+  --primary: #d41f16;
   --primary-foreground: #f7f4ee;
   --secondary: #1c1c1c;
   --secondary-foreground: #f7f4ee;
