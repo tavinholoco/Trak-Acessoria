@@ -2,16 +2,22 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 test.describe("Smoke — página inicial", () => {
-  test("carrega com hero, navegação e rodapé", async ({ page }) => {
+  test("carrega com hero, navegação e rodapé", async ({ page, isMobile }) => {
     await page.goto("/");
     await expect(page).toHaveTitle(/Trak Assessoria/);
 
     await expect(
       page.getByRole("heading", { level: 1, name: /Negócio/ })
     ).toBeVisible();
-    await expect(
-      page.getByRole("navigation", { name: "Navegação principal" })
-    ).toBeVisible();
+
+    // A navegação desktop é oculta no mobile (`hidden lg:flex`) — só existe
+    // em viewport não-mobile. O rodapé é visível em todos os tamanhos.
+    if (!isMobile) {
+      await expect(
+        page.getByRole("navigation", { name: "Navegação principal" })
+      ).toBeVisible();
+    }
+
     await expect(
       page.getByRole("navigation", { name: "Navegação do rodapé" })
     ).toBeVisible();
