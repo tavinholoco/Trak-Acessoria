@@ -68,7 +68,8 @@ export const privacy = {
       id: "cookies-analytics",
       title: "5. Cookies e analytics",
       body: [
-        "Este site não utiliza cookies de rastreamento nem ferramentas de análise de audiência sem o seu consentimento prévio. Ferramentas opcionais de medição (como Plausible ou GA4), quando adotadas, serão ativadas somente após consentimento explícito e de forma anonimizada.",
+        "Este site não utiliza cookies de rastreamento nem ferramentas de análise de audiência sem o seu consentimento prévio. Ferramentas opcionais de medição de audiência (como Plausible ou GA4), quando adotadas, serão ativadas somente após consentimento explícito e de forma anonimizada.",
+        "Para monitorar a performance da página (Core Web Vitals — tempo de carregamento, estabilidade visual e interatividade), o site utiliza o Vercel Speed Insights, serviço da plataforma de hospedagem. Esse serviço coleta métricas anônimas de performance do navegador — sem cookies de rastreamento, sem dados pessoais e sem perfilamento — e dispensa consentimento nos termos do art. 7º, IX, da LGPD (legítimo interesse na qualidade do serviço).",
         "O modo escuro e as preferências de tema são armazenadas localmente no seu navegador (localStorage) e não são enviadas aos nossos servidores.",
       ],
     },

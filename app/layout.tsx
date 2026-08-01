@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import { AnalyticsTracker } from "@/components/layout/analytics-tracker";
 import { ConsentBanner } from "@/components/layout/consent-banner";
 import { Footer } from "@/components/layout/footer";
@@ -114,6 +116,9 @@ export default function RootLayout({
           <ConsentBanner />
           <AnalyticsTracker />
         </ThemeProvider>
+        {/* Vercel Speed Insights (Fase 6): RUM de Core Web Vitals — sem cookies
+        de rastreamento; dados anônimos; só envia dados em produção na Vercel. */}
+        <SpeedInsights />
       </body>
     </html>
   );
