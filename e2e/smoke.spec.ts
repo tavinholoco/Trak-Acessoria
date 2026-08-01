@@ -58,6 +58,38 @@ test.describe("Smoke — página inicial", () => {
 
     await expect(page).toHaveURL(/#contato/);
   });
+
+  test("seções renderizam conteúdo a partir de data/* (Fase 3)", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    // As seções revelam com IntersectionObserver (RF-11) — os alvos ficam
+    // visibility:hidden até o reveal, então scrollIntoViewIfNeeded não
+    // funciona neles. Rola a seção (sempre visível) com scrollTo instantâneo
+    // e deixa o toBeVisible (auto-retry ~5s) cobrir a transição de 700ms.
+    const alvos = [
+      { seletor: "#servicos", obter: () => page.getByRole("heading", { name: "Gestão Financeira" }) },
+      { seletor: "#projetos", obter: () => page.getByText("+120%") },
+      { seletor: "#equipe", obter: () => page.getByRole("heading", { name: "Ana Souza" }) },
+      { seletor: "#contato", obter: () => page.getByRole("link", { name: "FALAR NO WHATSAPP" }) },
+    ];
+
+    for (const alvo of alvos) {
+      // behavior: "instant" — ignora o scroll-behavior: smooth do globals.css
+      // (caso contrário a rolagem animaria e poderia ficar lenta/flaky).
+      await page.evaluate((sel) => {
+        const el = document.querySelector(sel);
+        if (el) {
+          window.scrollTo({
+            top: el.getBoundingClientRect().top + window.scrollY - 80,
+            behavior: "instant",
+          });
+        }
+      }, alvo.seletor);
+      await expect(alvo.obter()).toBeVisible();
+    }
+  });
 });
 
 test.describe("Menu mobile (RF-02)", () => {
@@ -82,6 +114,20 @@ test.describe("Menu mobile (RF-02)", () => {
 test.describe("Acessibilidade (RNF-02 / WCAG)", () => {
   test("página inicial sem violações críticas do axe", async ({ page }) => {
     await page.goto("/");
+
+    // As seções revelam com IntersectionObserver (RF-11) — rola a página
+    // até o fim para o axe avaliar o conteúdo real, não o estado oculto.
+    await page.evaluate(async () => {
+      const height = document.body.scrollHeight;
+      for (let y = 0; y <= height; y += 400) {
+        // behavior: "instant" — ignora o scroll-behavior: smooth do globals.css
+        // (consistente com o teste de seções; evita rolagem animada/flaky).
+        window.scrollTo({ top: y, behavior: "instant" });
+        await new Promise((r) => setTimeout(r, 50));
+      }
+      window.scrollTo({ top: 0, behavior: "instant" });
+    });
+    await page.waitForTimeout(1500); // aguarda as transições de reveal (700ms)
 
     const results = await new AxeBuilder({ page }).analyze();
     // WCAG AA (RNF-02) = sem violações critical OU serious (ex.: contraste).

@@ -8,6 +8,8 @@ import { afterEach, vi } from "vitest";
  */
 if (typeof window !== "undefined") {
   Object.defineProperty(window, "matchMedia", {
+    // configurable: testes específicos sobrescrevem via vi.stubGlobal.
+    configurable: true,
     writable: true,
     value: vi.fn().mockImplementation((query: string) => ({
       matches: false,
@@ -32,6 +34,8 @@ if (typeof window !== "undefined") {
     takeRecords = vi.fn();
   }
   Object.defineProperty(window, "IntersectionObserver", {
+    // configurable: testes de Reveal sobrescrevem para simular interseção.
+    configurable: true,
     writable: true,
     value: IntersectionObserverMock,
   });

@@ -155,6 +155,21 @@
   html {
     scroll-behavior: auto;
   }
+
+  /* RF-04/RF-11 — marquee infinito e rotação lenta pausados */
+  .animate-marquee,
+  .animate-spin-slow {
+    animation: none;
+  }
+
+  /* Reveals, hovers e transições viram mudanças instantâneas */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ============ HIERARQUIA — 3 NÍVEIS ============ */
@@ -217,4 +232,15 @@
 
 @utility animate-marquee {
   animation: marquee 28s linear infinite;
+}
+
+/* Rotação lenta — detalhes de identidade (Fase 3.8) */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@utility animate-spin-slow {
+  animation: spin-slow 40s linear infinite;
 }
