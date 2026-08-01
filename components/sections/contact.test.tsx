@@ -33,8 +33,13 @@ describe("Contact (Fase 3.6 / RF-09)", () => {
     }
   });
 
-  it("reserva o espaço do formulário para a Fase 4 (RF-08)", () => {
+  it("renderiza o formulário de contato (RF-08 / Fase 4)", () => {
     render(<Contact />);
-    expect(screen.getByText(/Formulário de contato/)).toBeInTheDocument();
+    expect(
+      screen.getByRole("combobox", { name: "Tipo de empresa" })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "ENVIAR MENSAGEM" })
+    ).toBeInTheDocument();
   });
 });

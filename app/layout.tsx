@@ -5,6 +5,7 @@ import "./globals.css";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -45,6 +46,8 @@ export default function RootLayout({
           {/* As páginas renderizam seu próprio <main> (landmark único) */}
           <div className="flex-1">{children}</div>
           <Footer />
+          {/* Toasts do formulário (RF-08 / Fase 4.4) — dentro do ThemeProvider */}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

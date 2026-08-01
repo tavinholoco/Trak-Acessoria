@@ -1,3 +1,4 @@
+import { ContactForm } from "@/components/sections/contact-form";
 import { Faq } from "@/components/sections/faq";
 import { Poster } from "@/components/sections/poster";
 import { Reveal } from "@/components/sections/reveal";
@@ -6,15 +7,15 @@ import { site, whatsappUrl } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 /**
- * Bloco de contato (Fase 3.6 / RF-09): informações, WhatsApp e FAQ.
- * O formulário (RF-08) chega na Fase 4 — placeholder documentado abaixo.
+ * Bloco de contato (Fase 3.6 / RF-09 + RF-08): formulário (Fase 4),
+ * informações de contato, WhatsApp e FAQ.
  */
 export function Contact() {
   return (
     <Poster id="contato" index="06" title="Contato" tone="paper">
       <div className="grid gap-12 lg:grid-cols-2">
         <Reveal>
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-8">
             <p className="max-w-md font-sans text-sm text-muted-foreground">
               Vamos conversar sobre o seu negócio de arte? Conte sobre o seu
               momento e a gente desenha o próximo passo junto com você.
@@ -61,10 +62,8 @@ export function Contact() {
               ))}
             </ul>
 
-            {/* RF-08: formulário de contato chega na Fase 4 */}
-            <p className="border border-dashed border-border p-4 font-sans text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
-              Formulário de contato em breve
-            </p>
+            {/* RF-08: formulário de contato (Fase 4) */}
+            <ContactForm />
           </div>
         </Reveal>
 
