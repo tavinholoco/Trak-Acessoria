@@ -1,6 +1,8 @@
+import Image from "next/image";
+
+import { Parallax } from "@/components/sections/parallax";
 import { buttonVariants } from "@/components/ui/button";
 import { site } from "@/data/site";
-import { Parallax } from "@/components/sections/parallax";
 
 /**
  * Hero pôster (Fase 3.1): headline gigante (N1), espaço vazio dominante,
@@ -18,11 +20,14 @@ export function Hero() {
         speed={40}
         className="pointer-events-none absolute -right-10 top-24 hidden lg:block"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        {/* Sol decorativo (Fase 5.4): SVG vetorial, sem otimização necessária */}
+        <Image
           src="/art/sol.svg"
           alt=""
           aria-hidden="true"
+          width={1024}
+          height={1024}
+          unoptimized
           className="h-40 w-40 animate-spin-slow opacity-80"
         />
       </Parallax>
@@ -34,11 +39,16 @@ export function Hero() {
           <span className="block text-primary">Negócio.</span>
         </h1>
         <div className="mt-8 flex flex-wrap items-center gap-4">
-          <a href="#servicos" className={buttonVariants({ size: "sm" })}>
+          <a
+            href="#servicos"
+            data-track-cta="ver-servicos"
+            className={buttonVariants({ size: "sm" })}
+          >
             VER SERVIÇOS
           </a>
           <a
             href="#contato"
+            data-track-cta="falar-conosco"
             className={buttonVariants({ variant: "outline", size: "sm" })}
           >
             FALAR CONOSCO

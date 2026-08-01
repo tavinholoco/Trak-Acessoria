@@ -61,6 +61,7 @@ export function MobileNav() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            data-track-cta="whatsapp-mobile"
             className={cn(buttonVariants({ size: "lg" }), "w-full")}
           >
             Falar no WhatsApp

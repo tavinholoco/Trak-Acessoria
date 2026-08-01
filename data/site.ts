@@ -12,6 +12,13 @@ export const site = {
   description:
     "Assessoria para empresas de arte — divulgação, posicionamento e captação de recursos para quem faz cultura acontecer.",
 
+  /**
+   * URL pública do site — base para canonical, sitemap, robots e OG (RF-12).
+   * Sem domínio próprio (decisão do cliente): sobrescreva via NEXT_PUBLIC_SITE_URL
+   * no deploy (Vercel) ou use a URL padrão da Vercel.
+   */
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://trak-assessoria.vercel.app",
+
   email: "contato@trakassessoria.com.br",
 
   whatsapp: {

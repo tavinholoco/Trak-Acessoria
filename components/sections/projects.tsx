@@ -1,6 +1,8 @@
-import { projects } from "@/data/projects";
+import Image from "next/image";
+
 import { Poster } from "@/components/sections/poster";
 import { Reveal } from "@/components/sections/reveal";
+import { projects } from "@/data/projects";
 
 /**
  * Grade de posters/cases com métricas (Fase 3.4 / RF-05) a partir de
@@ -14,10 +16,13 @@ export function Projects() {
           <Reveal key={project.id} delay={(i % 4) * 80}>
             <article className="group flex h-full flex-col overflow-hidden border border-border bg-background transition-transform duration-300 hover:-translate-y-1">
               <div className="relative flex aspect-[3/4] items-center justify-center overflow-hidden bg-secondary">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                {/* SVG vetorial autoral (Fase 5.4): lazy por padrão */}
+                <Image
                   src={project.art}
                   alt={`Ilustração do projeto ${project.title}`}
+                  width={1024}
+                  height={1024}
+                  unoptimized
                   className="h-2/3 w-2/3 object-contain transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110"
                 />
                 <span className="absolute left-4 top-4 font-sans text-xs font-bold tracking-[0.25em] text-muted-foreground">

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { site, whatsappUrl } from "@/data/site";
 
 /**
@@ -84,9 +86,18 @@ export function Footer() {
           <p className="font-sans text-xs text-muted-foreground">
             © {year} {site.name}. Projeto de portfólio — dados fictícios.
           </p>
-          <p className="font-sans text-xs text-muted-foreground">
-            Divulgação · Recursos · Cultura
-          </p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            {/* Política de Privacidade — LGPD (RNF-08 / Fase 5.6) */}
+            <Link
+              href="/privacidade"
+              className="font-sans text-xs font-bold uppercase tracking-wide text-muted-foreground transition-colors hover:text-primary"
+            >
+              Política de Privacidade
+            </Link>
+            <p className="font-sans text-xs text-muted-foreground">
+              Divulgação · Recursos · Cultura
+            </p>
+          </div>
         </div>
       </div>
     </footer>

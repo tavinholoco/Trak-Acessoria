@@ -42,6 +42,7 @@ export function Contact() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
+              data-track-cta="whatsapp"
               className={cn(buttonVariants({ size: "lg" }), "w-fit")}
             >
               FALAR NO WHATSAPP

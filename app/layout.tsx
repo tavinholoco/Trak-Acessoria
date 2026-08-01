@@ -1,11 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
+import { AnalyticsTracker } from "@/components/layout/analytics-tracker";
+import { ConsentBanner } from "@/components/layout/consent-banner";
 import { Footer } from "@/components/layout/footer";
 import { Header } from "@/components/layout/header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { site } from "@/data/site";
+import { seoJsonLd, serializeJsonLd } from "@/lib/seo";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -19,10 +23,63 @@ const inter = Inter({
   display: "swap",
 });
 
+/**
+ * Metadados globais (RF-12 / Fase 5.1): title template, description, Open
+ * Graph, Twitter, canonical e robots. `metadataBase` resolve URLs relativas.
+ */
 export const metadata: Metadata = {
-  title: "Trak Assessoria",
-  description:
-    "Assessoria para empresas de arte — divulgação e captação de recursos.",
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name} — ${site.tagline}`,
+    template: `%s — ${site.name}`,
+  },
+  description: site.description,
+  applicationName: site.name,
+  keywords: [
+    "assessoria de arte",
+    "gestão de empresas de arte",
+    "captação de recursos",
+    "editais",
+    "leis de incentivo",
+    "marketing cultural",
+    "galerias",
+    "ateliês",
+  ],
+  authors: [{ name: site.name }],
+  creator: site.name,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "/",
+    siteName: site.name,
+    title: `${site.name} — ${site.tagline}`,
+    description: site.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — ${site.tagline}`,
+    description: site.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+/**
+ * Configuração de viewport (Fase 5.1): themeColor com o preto da marca e
+ * colorScheme — `themeColor`/`viewport` no Metadata são deprecados nesta
+ * versão do Next.js (ver `next/dist/docs`).
+ */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0F0F0F",
+  // Sem `colorScheme` fixo: o next-themes (RF-10) gerencia o color-scheme
+  // via CSS conforme o tema ativo — um meta estático quebraria o light mode.
 };
 
 export default function RootLayout({
@@ -37,6 +94,11 @@ export default function RootLayout({
       className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        {/* Dados estruturados (RF-12 / Fase 5.2) — Organization + ProfessionalService */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(seoJsonLd) }}
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -48,6 +110,9 @@ export default function RootLayout({
           <Footer />
           {/* Toasts do formulário (RF-08 / Fase 4.4) — dentro do ThemeProvider */}
           <Toaster />
+          {/* Analytics LGPD (Fase 5.5): consentimento + KPIs (scroll/CTA) */}
+          <ConsentBanner />
+          <AnalyticsTracker />
         </ThemeProvider>
       </body>
     </html>

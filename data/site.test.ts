@@ -37,4 +37,9 @@ describe("site — dados globais (data/site.ts)", () => {
     expect(whatsappUrl).toContain("text=");
     expect(decodeURIComponent(whatsappUrl)).toContain(site.whatsapp.message);
   });
+
+  it("url pública é uma URL absoluta https (RF-12 / Fase 5.1)", () => {
+    expect(site.url).toMatch(/^https?:\/\//);
+    expect(new URL(site.url).protocol).toMatch(/^https?:$/);
+  });
 });

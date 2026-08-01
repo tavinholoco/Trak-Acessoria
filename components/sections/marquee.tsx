@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { bannerHeadline, marqueeItems } from "@/data/marquee";
 import { cn } from "@/lib/utils";
 
@@ -67,10 +69,13 @@ export function Marquee() {
                   i % 2 === 0 ? "rotate-[-4deg]" : "rotate-[3deg]"
                 )}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                {/* SVGs vetoriais autorais (Fase 5.4): lazy por padrão */}
+                <Image
                   src={art.src}
                   alt={art.alt}
+                  width={1024}
+                  height={1024}
+                  unoptimized
                   className="h-14 w-14 md:h-20 md:w-20"
                 />
               </figure>

@@ -35,4 +35,10 @@ describe("Footer (2.3)", () => {
       ).toBeInTheDocument();
     }
   });
+
+  it("exibe link de Política de Privacidade apontando para /privacidade (RNF-08)", () => {
+    render(<Footer />);
+    const link = screen.getByRole("link", { name: "Política de Privacidade" });
+    expect(link).toHaveAttribute("href", "/privacidade");
+  });
 });

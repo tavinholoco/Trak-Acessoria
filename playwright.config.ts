@@ -31,5 +31,12 @@ export default defineConfig({
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,
+    // Habilita o analytics no build de E2E para testar o consentimento LGPD
+    // (Fase 5.5): o banner aparece e o tracking só age após aceite.
+    env: {
+      ...process.env,
+      NEXT_PUBLIC_ANALYTICS: "plausible",
+      NEXT_PUBLIC_ANALYTICS_DOMAIN: "trak-assessoria.vercel.app",
+    },
   },
 });

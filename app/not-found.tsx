@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
@@ -17,10 +18,13 @@ export default function NotFound() {
         <br />
         na <span className="text-primary">exposição.</span>
       </h1>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      {/* SVG vetorial autoral (Fase 5.4) */}
+      <Image
         src="/art/busto.svg"
         alt="Ilustração autoral de um busto — identidade Trak"
+        width={1024}
+        height={1024}
+        unoptimized
         className="h-40 w-40 animate-spin-slow"
       />
       <Link href="/" className={buttonVariants({ size: "lg" })}>

@@ -68,6 +68,7 @@ export function Header() {
           <ThemeToggle />
           <a
             href="#contato"
+            data-track-cta="falar-conosco-header"
             className={cn(buttonVariants({ size: "sm" }), "hidden md:inline-flex")}
           >
             Falar conosco

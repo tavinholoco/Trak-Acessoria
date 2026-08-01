@@ -1,7 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 
-import { Button, buttonVariants } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
@@ -202,8 +203,15 @@ export default function StoryboardPage() {
             {illustrations.map((art) => (
               <figure key={art.src} className="flex flex-col gap-2">
                 <div className="flex aspect-square items-center justify-center border border-border bg-secondary p-6">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={art.src} alt={art.name} className="h-full w-full" />
+                  {/* SVG vetorial autoral (Fase 5.4) */}
+                  <Image
+                    src={art.src}
+                    alt={art.name}
+                    width={1024}
+                    height={1024}
+                    unoptimized
+                    className="h-full w-full"
+                  />
                 </div>
                 <figcaption className="flex flex-col">
                   <span className="font-sans text-xs font-bold uppercase">{art.name}</span>

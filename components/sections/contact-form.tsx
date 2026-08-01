@@ -29,6 +29,7 @@ import {
   contactSchema,
   type ContactFormValues,
 } from "@/lib/contact-schema";
+import { trackEvent } from "@/lib/analytics";
 
 /** Estados do envio (Fase 4.2): idle → success | error. O loading do botão
  * vem de `formState.isSubmitting` (RHF) — sem estado duplicado. */
@@ -75,6 +76,8 @@ export function ContactForm() {
       }
 
       setStatus("success");
+      // Conversão (KPI §3.2) — no-op sem consentimento LGPD (Fase 5.5).
+      trackEvent("form_submit", { ok: true, source: "contato" });
       toast.success("Mensagem enviada! Responderemos em breve.");
       form.reset();
     } catch (error) {
