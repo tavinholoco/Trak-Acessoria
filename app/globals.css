@@ -131,6 +131,26 @@
   }
   html {
     @apply font-sans;
+    /* 2.4 — rolagem suave nas âncoras */
+    scroll-behavior: smooth;
+  }
+
+  /* 2.4 — compensa o header sticky ao navegar por âncora */
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
+
+  /* Aceite da Fase 2: foco visível em qualquer elemento interativo */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+/* RF-11 — respeita preferência por movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 

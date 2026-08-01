@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const fraunces = Fraunces({
@@ -39,7 +41,10 @@ export default function RootLayout({
           defaultTheme="dark"
           disableTransitionOnChange
         >
-          {children}
+          <Header />
+          {/* As páginas renderizam seu próprio <main> (landmark único) */}
+          <div className="flex-1">{children}</div>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
