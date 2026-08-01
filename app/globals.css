@@ -7,9 +7,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-sans: var(--font-inter);
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  --font-display: var(--font-fraunces);
+  --font-heading: var(--font-fraunces);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -48,73 +49,77 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* ============ TRAK — IDENTIDADE VISUAL ============ */
+
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  /* Light — "papel" quente */
+  --background: #f7f4ee;
+  --foreground: #0f0f0f;
+  --card: #f7f4ee;
+  --card-foreground: #0f0f0f;
+  --popover: #f7f4ee;
+  --popover-foreground: #0f0f0f;
+  --primary: #e1261c;
+  --primary-foreground: #f7f4ee;
+  --secondary: #e8e2d6;
+  --secondary-foreground: #0f0f0f;
+  --muted: #e8e2d6;
+  --muted-foreground: #6b6559;
+  --accent: #1d3bff;
+  --accent-foreground: #f7f4ee;
+  --destructive: #b3201a;
+  --border: #0f0f0f1a;
+  --input: #0f0f0f26;
+  --ring: #e1261c;
+  --chart-1: #e1261c;
+  --chart-2: #0f0f0f;
+  --chart-3: #1d3bff;
+  --chart-4: #e8e2d6;
+  --chart-5: #6b6559;
+  --radius: 0.5rem;
+  --sidebar: #f7f4ee;
+  --sidebar-foreground: #0f0f0f;
+  --sidebar-primary: #e1261c;
+  --sidebar-primary-foreground: #f7f4ee;
+  --sidebar-accent: #e8e2d6;
+  --sidebar-accent-foreground: #0f0f0f;
+  --sidebar-border: #0f0f0f1a;
+  --sidebar-ring: #e1261c;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Dark — "gallery black" (default da marca) */
+  --background: #0f0f0f;
+  --foreground: #f7f4ee;
+  --card: #0f0f0f;
+  --card-foreground: #f7f4ee;
+  --popover: #161616;
+  --popover-foreground: #f7f4ee;
+  --primary: #e1261c;
+  --primary-foreground: #f7f4ee;
+  --secondary: #1c1c1c;
+  --secondary-foreground: #f7f4ee;
+  --muted: #1c1c1c;
+  --muted-foreground: #a9a295;
+  --accent: #1d3bff;
+  --accent-foreground: #f7f4ee;
+  --destructive: #e1261c;
+  --border: #f7f4ee1a;
+  --input: #f7f4ee26;
+  --ring: #e1261c;
+  --chart-1: #e1261c;
+  --chart-2: #1d3bff;
+  --chart-3: #f7f4ee;
+  --chart-4: #a9a295;
+  --chart-5: #e1261c;
+  --sidebar: #161616;
+  --sidebar-foreground: #f7f4ee;
+  --sidebar-primary: #e1261c;
+  --sidebar-primary-foreground: #f7f4ee;
+  --sidebar-accent: #1c1c1c;
+  --sidebar-accent-foreground: #f7f4ee;
+  --sidebar-border: #f7f4ee1a;
+  --sidebar-ring: #e1261c;
 }
 
 @layer base {
@@ -127,4 +132,66 @@
   html {
     @apply font-sans;
   }
+}
+
+/* ============ HIERARQUIA — 3 NÍVEIS ============ */
+
+@utility display-1 {
+  font-family: var(--font-fraunces);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.88;
+  font-size: clamp(4rem, 32vw, 37.5rem); /* 64px → 600px */
+}
+
+@utility display-2 {
+  font-family: var(--font-fraunces);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  font-size: clamp(2.5rem, 5vw, 5rem); /* 40px → 80px */
+}
+
+/* ============ TEXTURAS ============ */
+
+/* Grain (granulado) muito leve */
+@utility texture-grain {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Linhas horizontais discretas (papel impresso) */
+@utility texture-lines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 7px,
+    color-mix(in oklab, var(--foreground) 7%, transparent) 7px,
+    color-mix(in oklab, var(--foreground) 7%, transparent) 8px
+  );
+}
+
+/* ============ MOVIMENTO — MARQUEE ============ */
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-marquee {
+  animation: marquee 28s linear infinite;
 }
