@@ -183,6 +183,24 @@
   font-size: clamp(4rem, 32vw, 37.5rem); /* 64px → 600px */
 }
 
+/* Headline do Hero (Fase 3.1): mesma identidade do display-1, porém com
+   escala que cabe na dobra. Mobile/tablet: 16vw (teto 224px — tamanho
+   aprovado). Desktop (lg+): escala proporcional a LARGURA E ALTURA da tela
+   (min(22vw, 30dvh), teto 416px) para preencher a tela sem cortar
+   "NEGÓCIO." nem deixar vazio excessivo abaixo do Hero. */
+@utility display-hero {
+  font-family: var(--font-fraunces);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.88;
+  font-size: clamp(3rem, 16vw, 14rem); /* 48px → 224px */
+
+  @media (min-width: 1024px) {
+    font-size: clamp(3rem, min(22vw, 30dvh), 26rem); /* 48px → 416px */
+  }
+}
+
 @utility display-2 {
   font-family: var(--font-fraunces);
   font-weight: 900;

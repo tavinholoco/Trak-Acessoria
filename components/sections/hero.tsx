@@ -1,40 +1,22 @@
-import Image from "next/image";
-
-import { Parallax } from "@/components/sections/parallax";
 import { buttonVariants } from "@/components/ui/button";
 import { site } from "@/data/site";
 
 /**
- * Hero pôster (Fase 3.1): headline gigante (N1), espaço vazio dominante,
- * 2 CTAs e indicadores de autoridade. Server component.
+ * Hero pôster (Fase 3.1): headline gigante (N1), 2 CTAs e indicadores de
+ * autoridade. Server component. A seção tem a altura do conteúdo (sem
+ * min-h de tela cheia + justify-between), para não sobrar vazio entre os
+ * CTAs e o rodapé de autoridade em nenhuma resolução.
  */
 export function Hero() {
   return (
     <section
       id="inicio"
       aria-labelledby="inicio-titulo"
-      className="relative flex min-h-[calc(100dvh-4rem)] flex-col justify-between overflow-hidden px-4 py-10 md:px-10"
+      className="relative flex flex-col gap-10 overflow-hidden px-4 py-10 md:px-10"
     >
-      {/* Parallax leve no sol da identidade (Fase 3.10) */}
-      <Parallax
-        speed={40}
-        className="pointer-events-none absolute -right-10 top-24 hidden lg:block"
-      >
-        {/* Sol decorativo (Fase 5.4): SVG vetorial, sem otimização necessária */}
-        <Image
-          src="/art/sol.svg"
-          alt=""
-          aria-hidden="true"
-          width={1024}
-          height={1024}
-          unoptimized
-          className="h-40 w-40 animate-spin-slow opacity-80"
-        />
-      </Parallax>
-
       {/* Tipografia gigante */}
       <div className="flex flex-col pt-6 md:pt-10">
-        <h1 id="inicio-titulo" className="display-1">
+        <h1 id="inicio-titulo" className="display-hero">
           <span className="block">Arte é</span>
           <span className="block text-primary">Negócio.</span>
         </h1>
