@@ -8,7 +8,8 @@ import { Separator } from "@/components/ui/separator";
 const palette = [
   { name: "Preto (background)", value: "#0F0F0F", hex: "#0F0F0F" },
   { name: "Branco quente (foreground)", value: "#F7F4EE", hex: "#F7F4EE" },
-  { name: "Vermelho (primary)", value: "#E1261C", hex: "#E1261C" },
+  // Token escurecido p/ contraste AA (ver PRD §9.3): #D41F16.
+  { name: "Vermelho (primary)", value: "#D41F16", hex: "#D41F16" },
   { name: "Azul (accent)", value: "#1D3BFF", hex: "#1D3BFF" },
   { name: "Cinza quente (muted)", value: "#1C1C1C", hex: "#1C1C1C" },
   { name: "Muted-foreground", value: "#A9A295", hex: "#A9A295" },
@@ -19,6 +20,49 @@ const posters = [
   { label: "Azul", className: "bg-accent" },
   { label: "Cinza", className: "bg-secondary" },
   { label: "Papel", className: "bg-foreground text-background" },
+];
+
+const illustrations = [
+  {
+    src: "/art/megafone.svg",
+    name: "Megafone",
+    theme: "Divulgação",
+  },
+  {
+    src: "/art/moeda.svg",
+    name: "Moeda",
+    theme: "Recursos",
+  },
+  {
+    src: "/art/paleta.svg",
+    name: "Paleta",
+    theme: "Arte",
+  },
+  {
+    src: "/art/sol.svg",
+    name: "Sol",
+    theme: "Psicodelia",
+  },
+  {
+    src: "/art/flor.svg",
+    name: "Flor",
+    theme: "Orgânico",
+  },
+  {
+    src: "/art/busto.svg",
+    name: "Busto",
+    theme: "Irreverência",
+  },
+  {
+    src: "/art/estrela.svg",
+    name: "Estrela",
+    theme: "Brilho",
+  },
+  {
+    src: "/art/vinil.svg",
+    name: "Vinil",
+    theme: "Cultura",
+  },
 ];
 
 export default function StoryboardPage() {
@@ -144,10 +188,38 @@ export default function StoryboardPage() {
 
         <Separator />
 
-        {/* 05 — Texturas */}
-        <section aria-labelledby="texturas" className="flex flex-col gap-8">
+        {/* 05 — Ilustrações */}
+        <section aria-labelledby="ilustracoes" className="flex flex-col gap-8">
           <div className="flex items-baseline gap-4">
             <span className="font-sans text-sm text-muted-foreground">05</span>
+            <h2 id="ilustracoes" className="display-2">Ilustrações autorais</h2>
+          </div>
+          <p className="font-sans text-sm text-muted-foreground">
+            SVG vetoriais no estilo cartoon retrô / psicodelia — contorno grosso, cores chapadas,
+            sem sombreamento. Cores vivas apenas nas ilustrações, nunca no layout.
+          </p>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {illustrations.map((art) => (
+              <figure key={art.src} className="flex flex-col gap-2">
+                <div className="flex aspect-square items-center justify-center border border-border bg-secondary p-6">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={art.src} alt={art.name} className="h-full w-full" />
+                </div>
+                <figcaption className="flex flex-col">
+                  <span className="font-sans text-xs font-bold uppercase">{art.name}</span>
+                  <span className="font-sans text-xs text-muted-foreground">{art.theme}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        <Separator />
+
+        {/* 06 — Texturas */}
+        <section aria-labelledby="texturas" className="flex flex-col gap-8">
+          <div className="flex items-baseline gap-4">
+            <span className="font-sans text-sm text-muted-foreground">06</span>
             <h2 id="texturas" className="display-2">Texturas</h2>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
