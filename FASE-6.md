@@ -15,7 +15,7 @@
 - [ ] **Vercel → Add New → Project → Import Git Repository** → escolher `Trak-Acessoria`.
 - [ ] Framework: **Next.js** (auto-detectado). Build command: `npm run build` (padrão).
 - [ ] **Sem domínio próprio** (decisão do PRD §6.3): manter a URL padrão da Vercel
-      (ex.: `https://trak-acessoria.vercel.app`).
+      (ex.: `https://trak-assessoria.vercel.app`).
 - [ ] No painel do projeto: **Settings → Environment Variables** — adicionar no ambiente
       `Production` (e `Preview` se quiser testar em staging):
 
