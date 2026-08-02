@@ -19,6 +19,26 @@ export const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 export const RATE_LIMIT_MAX = 3;
 
 /**
+ * Extrai o IP real do visitante para a chave de rate limit.
+ *
+ * A Vercel anexa o IP real como a ÚLTIMA entrada de `x-forwarded-for` — os
+ * valores anteriores podem ser forjados pelo client (spoofing) para zerar o
+ * limite. Por isso usamos o último valor, com fallback para `x-real-ip`.
+ */
+export function getClientIp(request: Request): string {
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) {
+    const ips = forwarded
+      .split(",")
+      .map((ip) => ip.trim())
+      .filter(Boolean);
+    const last = ips[ips.length - 1];
+    if (last) return last;
+  }
+  return request.headers.get("x-real-ip") ?? "unknown";
+}
+
+/**
  * Verifica se `key` (ex.: IP do visitante) ainda pode fazer requisição.
  * Retorna `false` quando o limite da janela foi atingido.
  */

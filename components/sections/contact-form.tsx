@@ -52,6 +52,7 @@ export function ContactForm() {
       email: "",
       companyType: "",
       message: "",
+      honeypot: "",
     },
   });
 
@@ -182,6 +183,17 @@ export function ContactForm() {
               <FormMessage />
             </FormItem>
           )}
+        />
+
+        {/* Honeypot anti-spam (RNF-05): campo invisível que bots preenchem;
+        o servidor descarta submissões com honeypot preenchido (route.ts). */}
+        <input
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="absolute -left-[9999px] h-px w-px opacity-0"
+          {...form.register("honeypot")}
         />
 
         {/* Feedback inline (aria-live) + CTA */}

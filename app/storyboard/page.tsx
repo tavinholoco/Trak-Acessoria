@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -67,6 +68,12 @@ const illustrations = [
 ];
 
 export default function StoryboardPage() {
+  // Página de desenvolvimento (PRD §1.6): não vai para produção.
+  // Em build/start de produção, retorna 404 — sem vazar conteúdo "dev only".
+  if (process.env.NODE_ENV === "production") {
+    notFound();
+  }
+
   return (
     <main className="min-h-dvh bg-background text-foreground texture-grain">
       <div className="mx-auto flex max-w-6xl flex-col gap-20 px-6 py-16 md:px-12">

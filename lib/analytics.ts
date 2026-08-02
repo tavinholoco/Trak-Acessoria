@@ -17,6 +17,15 @@
 /** Chave do consentimento no localStorage (não é cookie — LGPD-friendly). */
 export const CONSENT_KEY = "trak:analytics-consent";
 
+/**
+ * URL padrão do script do provider (Plausible SaaS). Para self-hosted,
+ * sobrescreva com NEXT_PUBLIC_ANALYTICS_SCRIPT_URL (ex.: seu domínio).
+ *
+ * Lida em `loadAnalyticsScript` em tempo de chamada (não no escopo do módulo)
+ * para ser testável via vi.stubEnv e consistente com NEXT_PUBLIC_ANALYTICS_DOMAIN.
+ */
+const DEFAULT_ANALYTICS_SCRIPT_URL = "https://plausible.io/js/script.js";
+
 export type ConsentState = "accepted" | "declined" | null;
 
 /** O analytics está configurado no ambiente? (provider ativo) */
@@ -82,6 +91,11 @@ export function loadAnalyticsScript(): void {
   const domain = process.env.NEXT_PUBLIC_ANALYTICS_DOMAIN;
   if (!domain) return;
 
+  // URL do script lida no momento da chamada (testável e consistente com a
+  // leitura de domain acima). Padrão: Plausible SaaS.
+  const scriptUrl =
+    process.env.NEXT_PUBLIC_ANALYTICS_SCRIPT_URL ?? DEFAULT_ANALYTICS_SCRIPT_URL;
+
   const w = window as unknown as {
     plausible?: ((...args: unknown[]) => void) & { q?: unknown[] };
   };
@@ -97,7 +111,7 @@ export function loadAnalyticsScript(): void {
   // async: o atributo `defer` é inócuo em scripts criados via JS (só vale
   // para scripts do parser) — async mantém o carregamento não-bloqueante.
   script.async = true;
-  script.src = "https://plausible.io/js/script.js";
+  script.src = scriptUrl;
   script.dataset.domain = domain;
   script.dataset.trakAnalytics = "true";
   document.head.appendChild(script);

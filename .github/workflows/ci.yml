@@ -5,6 +5,13 @@ on:
     branches: [main, master]
   pull_request:
 
+# Least-privilege (auditoria de segurança): o workflow inteiro só lê o
+# repositório. O job e2e adiciona `actions: write` APENAS nele — necessário
+# para o actions/upload-artifact@v4 subir o relatório do Playwright (o escopo
+# `actions` no nível do workflow estaria em none e quebraria o upload).
+permissions:
+  contents: read
+
 jobs:
   quality:
     name: Lint, typecheck, unit & component tests
@@ -24,6 +31,9 @@ jobs:
   e2e:
     name: E2E (Playwright — 4 projetos)
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: write # upload-artifact@v4 (relatório do Playwright em falha)
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

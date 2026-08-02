@@ -5,7 +5,7 @@ profissionais do mercado de arte — galerias, ateliês, estúdios, produtoras c
 artistas que se organizam como negócio.
 
 > 💼 **Projeto pessoal de portfólio:** nome, e-mail e WhatsApp são fictícios (dados de demonstração).
-> Especificação completa no [`PRD.md`](../PRD.md) (raiz do projeto).
+> Especificação completa no [`PRD.md`](PRD.md).
 
 ---
 
@@ -150,6 +150,7 @@ Abra o `.env.local` e preencha os valores:
 | `NEXT_PUBLIC_SITE_URL` | ✅ | URL pública (canonical, sitemap, OG). Local: `http://localhost:3000` |
 | `NEXT_PUBLIC_ANALYTICS` | ❌ | `plausible` para ativar analytics (opcional, com consentimento LGPD) |
 | `NEXT_PUBLIC_ANALYTICS_DOMAIN` | ❌ | Domínio no provider de analytics (usar junto do analytics) |
+| `NEXT_PUBLIC_ANALYTICS_SCRIPT_URL` | ❌ | URL do script do provider (padrão: `https://plausible.io/js/script.js`; use para self-hosted) |
 
 ### 4. Subir o servidor de desenvolvimento
 
@@ -265,7 +266,8 @@ O workflow `.github/workflows/ci.yml` roda em todo **push/PR** para `main`/`mast
 2. Framework **Next.js** (auto-detectado); build command `npm run build` (padrão).
 3. Em **Settings → Environment Variables**, adicione (Production e Preview):
    `CONTACT_EMAIL`, `WHATSAPP`, `RESEND_API_KEY`, `RESEND_FROM`, `NEXT_PUBLIC_SITE_URL`,
-   e, se desejar analytics, `NEXT_PUBLIC_ANALYTICS` + `NEXT_PUBLIC_ANALYTICS_DOMAIN`.
+   e, se desejar analytics, `NEXT_PUBLIC_ANALYTICS` + `NEXT_PUBLIC_ANALYTICS_DOMAIN`
+   (+ `NEXT_PUBLIC_ANALYTICS_SCRIPT_URL` se usar Plausible self-hosted).
 4. Clique em **Deploy**. O checklist completo da Fase 6 está em [`FASE-6.md`](FASE-6.md).
 
 > Sem domínio próprio (decisão do PRD): a página fica na URL padrão da Vercel, ex.
@@ -277,7 +279,7 @@ O workflow `.github/workflows/ci.yml` roda em todo **push/PR** para `main`/`mast
 
 | Documento | Conteúdo |
 |---|---|
-| [`PRD.md`](../PRD.md) | Especificação completa do produto (escopo, design system, fases, testes) |
+| [`PRD.md`](PRD.md) | Especificação completa do produto (escopo, design system, fases, testes) |
 | [`FASE-6.md`](FASE-6.md) | Checklist executável de QA final e deploy na Vercel |
 | [`AGENTS.md`](AGENTS.md) | Aviso de breaking changes do Next.js 16 (para agentes/LLMs) |
 

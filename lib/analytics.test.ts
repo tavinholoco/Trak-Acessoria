@@ -102,6 +102,21 @@ describe("analytics — consentimento LGPD (Fase 5.5)", () => {
     expect(scripts).toHaveLength(1);
   });
 
+  it("loadAnalyticsScript usa URL customizada via env (self-hosted)", () => {
+    vi.stubEnv("NEXT_PUBLIC_ANALYTICS_DOMAIN", "stats.exemplo.com.br");
+    vi.stubEnv(
+      "NEXT_PUBLIC_ANALYTICS_SCRIPT_URL",
+      "https://stats.exemplo.com.br/js/script.js"
+    );
+    loadAnalyticsScript();
+
+    const script = document.querySelector(
+      "script[data-trak-analytics]"
+    ) as HTMLScriptElement | null;
+    expect(script?.src).toBe("https://stats.exemplo.com.br/js/script.js");
+    expect(script?.dataset.domain).toBe("stats.exemplo.com.br");
+  });
+
   it("loadAnalyticsScript é no-op sem domínio configurado", () => {
     vi.stubEnv("NEXT_PUBLIC_ANALYTICS_DOMAIN", "");
     loadAnalyticsScript();

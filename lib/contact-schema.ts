@@ -32,15 +32,26 @@ export const companyTypeOptions: ReadonlyArray<{
   { value: "outro", label: "Outro" },
 ];
 
-/** Schema estrito — usado pelo servidor e pelo resolver do formulário. */
+/**
+ * Schema estrito — usado pelo servidor e pelo resolver do formulário.
+ * Limites de tamanho (max) impedem payloads abusivos (anti-spam/DoS);
+ * `honeypot` é um campo escondido que bots costumam preencher (ver route.ts).
+ */
 export const contactSchema = z.object({
-  name: z.string().trim().min(2, "Informe seu nome (mínimo 2 caracteres)."),
+  name: z
+    .string()
+    .trim()
+    .min(2, "Informe seu nome (mínimo 2 caracteres).")
+    .max(100, "Nome muito longo (máximo 100 caracteres)."),
   email: z.email("Informe um e-mail válido."),
   companyType: z.enum(COMPANY_TYPE_VALUES, "Selecione o tipo de empresa."),
   message: z
     .string()
     .trim()
-    .min(10, "Sua mensagem precisa de pelo menos 10 caracteres."),
+    .min(10, "Sua mensagem precisa de pelo menos 10 caracteres.")
+    .max(2000, "Mensagem muito longa (máximo 2000 caracteres)."),
+  // Honeypot anti-bot: o formulário o mantém vazio; bots preenchem (ver route).
+  honeypot: z.string().optional().default(""),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;
@@ -54,4 +65,6 @@ export type ContactFormValues = {
   email: string;
   companyType: CompanyType | "";
   message: string;
+  /** Campo honeypot anti-bot — invisível no formulário, sempre vazio. */
+  honeypot: string;
 };

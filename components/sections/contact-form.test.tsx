@@ -19,6 +19,7 @@ const validValues = {
   email: "ana@galeria.com.br",
   companyType: "galeria",
   message: "Quero uma proposta para minha galeria de arte.",
+  honeypot: "",
 };
 
 async function fillForm(user: ReturnType<typeof userEvent.setup>) {

@@ -50,7 +50,14 @@ export async function sendContactEmail(
   });
 
   if (error) {
-    return { ok: false, error: error.message };
+    // Não vaza detalhes internos do provedor ao client (RNF-05): loga no
+    // servidor e devolve mensagem genérica — o WhatsApp é o canal reserva.
+    console.error("[contact] Falha no envio via Resend:", error);
+    return {
+      ok: false,
+      error:
+        "Não foi possível enviar a mensagem. Tente novamente ou fale no WhatsApp.",
+    };
   }
 
   return { ok: true, id: data?.id };

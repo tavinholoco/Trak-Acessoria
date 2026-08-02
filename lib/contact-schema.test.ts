@@ -59,6 +59,41 @@ describe("contactSchema (Fase 4.1 / RF-08)", () => {
     }
   });
 
+  it("rejeita nome acima de 100 caracteres (anti-abuso)", () => {
+    const result = contactSchema.safeParse({
+      ...validInput,
+      name: "A".repeat(101),
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejeita mensagem acima de 2000 caracteres (anti-abuso)", () => {
+    const result = contactSchema.safeParse({
+      ...validInput,
+      message: "a".repeat(2001),
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it("honeypot ausente ou vazio é aceito (padrão '')", () => {
+    expect(contactSchema.safeParse(validInput).success).toBe(true);
+    const withEmpty = contactSchema.safeParse({
+      ...validInput,
+      honeypot: "",
+    });
+    expect(withEmpty.success).toBe(true);
+  });
+
+  it("honeypot preenchido é aceito pelo schema e tratado na API", () => {
+    // O schema não rejeita (para não revelar a detecção ao bot) — a API
+    // descarta silenciosamente (ver route.test.ts).
+    const result = contactSchema.safeParse({
+      ...validInput,
+      honeypot: "bot",
+    });
+    expect(result.success).toBe(true);
+  });
+
   it("corpo vazio gera issues para todos os campos", () => {
     const result = contactSchema.safeParse({});
     expect(result.success).toBe(false);
