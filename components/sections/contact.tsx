@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
  */
 export function Contact() {
   return (
-    <Poster id="contato" index="07" title="Contato" tone="paper">
+    <Poster id="contato" index="07" title="Contato" tone="invert">
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-16">
         <Reveal className="h-full">
           <div className="flex h-full flex-col gap-8">
