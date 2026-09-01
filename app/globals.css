@@ -8,7 +8,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
-  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", "Cascadia Mono",
+    Menlo, monospace;
   --font-display: var(--font-fraunces);
   --font-heading: var(--font-fraunces);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -208,6 +209,41 @@
   letter-spacing: -0.02em;
   line-height: 0.95;
   font-size: clamp(2.5rem, 5vw, 5rem); /* 40px → 80px */
+}
+
+/* ============ NÍVEL 3 — LABELS E DADOS (MONO) ============ */
+
+/* Eyebrows, metadados e microcopy em caixa-alta (Fase B.1). A mono já tem
+   espacejamento largo por natureza, então o tracking fica menor do que o das
+   versões em Inter que substitui (0.16em contra 0.18–0.25em). */
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.6875rem; /* 11px */
+  line-height: 1.45;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Mesma voz, escala de leitura — links de contato e itens de lista. */
+@utility label-mono-lg {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8125rem; /* 13px */
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Índice do pôster: o número que abre cada seção, ao lado do título em
+   Fraunces. O contraste de peso (mono 700 × display 900) é a hierarquia —
+   o número marca, o título fala. */
+@utility index-mono {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3.6vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 /* ============ TEXTURAS ============ */

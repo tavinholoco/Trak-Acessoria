@@ -28,7 +28,7 @@ export function Contact() {
             <div className="flex flex-col gap-3 border-t border-border pt-6">
               <a
                 href={`mailto:${site.email}`}
-                className="font-sans text-sm font-bold uppercase tracking-wide transition-colors hover:text-primary"
+                className="label-mono-lg transition-colors hover:text-primary"
               >
                 {site.email}
               </a>
@@ -36,7 +36,7 @@ export function Contact() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-sans text-sm font-bold uppercase tracking-wide transition-colors hover:text-primary"
+                className="label-mono-lg transition-colors hover:text-primary"
               >
                 WhatsApp {site.whatsapp.display}
               </a>
@@ -61,7 +61,7 @@ export function Contact() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-primary"
+                    className="label-mono text-muted-foreground transition-colors hover:text-primary"
                   >
                     {social.label} ↗
                   </a>

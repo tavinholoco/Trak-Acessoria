@@ -26,7 +26,7 @@ export function Team() {
               </div>
               {/* Muted-foreground: vermelho pequeno sobre preto quebra o AA
                   (3.65:1 < 4.5:1 — PRD §9.3). O acento vermelho fica no ✦. */}
-              <p className="mt-2 font-sans text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+              <p className="mt-2 label-mono text-muted-foreground">
                 {member.role}
               </p>
               <p className="mt-4 max-w-xl font-sans text-sm text-muted-foreground">
@@ -36,7 +36,7 @@ export function Team() {
                 {member.focus.map((area) => (
                   <li
                     key={area}
-                    className="border border-border px-2 py-1 font-sans text-xs font-bold uppercase tracking-wide"
+                    className="border border-border px-2 py-1 label-mono"
                   >
                     {area}
                   </li>

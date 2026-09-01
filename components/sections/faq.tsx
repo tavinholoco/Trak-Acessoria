@@ -23,7 +23,7 @@ export function Faq() {
       <div className="grid gap-10 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] lg:gap-16">
         <Reveal>
           <div className="flex flex-col gap-4">
-            <h3 className="font-sans text-xs font-bold uppercase tracking-[0.25em] text-muted-foreground">
+            <h3 className="label-mono text-muted-foreground">
               Perguntas frequentes
             </h3>
             <p className="font-sans text-sm text-muted-foreground">
@@ -35,7 +35,7 @@ export function Faq() {
               target="_blank"
               rel="noopener noreferrer"
               data-track-cta="whatsapp-faq"
-              className="w-fit font-sans text-xs font-bold uppercase tracking-[0.2em] text-foreground underline decoration-primary decoration-2 underline-offset-4 transition-colors hover:text-primary"
+              className="w-fit label-mono text-foreground underline decoration-primary decoration-2 underline-offset-4 transition-colors hover:text-primary"
             >
               Não achou a sua? Pergunte ↗
             </a>

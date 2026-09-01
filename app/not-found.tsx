@@ -10,7 +10,7 @@ import { buttonVariants } from "@/components/ui/button";
 export default function NotFound() {
   return (
     <main className="flex min-h-[calc(100dvh-4rem)] flex-col items-center justify-center gap-8 px-4 py-20 text-center">
-      <p className="font-sans text-xs font-bold uppercase tracking-[0.25em] text-muted-foreground">
+      <p className="label-mono text-muted-foreground">
         Erro 404 · Página não encontrada
       </p>
       <h1 className="display-1">

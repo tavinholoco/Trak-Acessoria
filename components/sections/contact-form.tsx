@@ -201,7 +201,7 @@ export function ContactForm() {
           {status === "success" && (
             <p
               aria-live="polite"
-              className="border border-border bg-background px-4 py-3 font-sans text-sm font-bold uppercase tracking-wide text-primary"
+              className="border border-border bg-background px-4 py-3 label-mono-lg text-primary"
             >
               Mensagem enviada com sucesso! ✓
             </p>
@@ -209,7 +209,7 @@ export function ContactForm() {
           {status === "error" && (
             <p
               aria-live="assertive"
-              className="border border-destructive/40 bg-destructive/5 px-4 py-3 font-sans text-sm font-bold uppercase tracking-wide text-destructive"
+              className="border border-destructive/40 bg-destructive/5 px-4 py-3 label-mono-lg text-destructive"
             >
               Não foi possível enviar. Tente novamente ou fale no WhatsApp.
             </p>

@@ -27,14 +27,14 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-3">
           {/* Navegação */}
           <nav aria-label="Navegação do rodapé" className="flex flex-col gap-3">
-            <h2 className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+            <h2 className="label-mono text-muted-foreground">
               Navegação
             </h2>
             {site.nav.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="font-sans text-sm font-bold uppercase tracking-wide transition-colors hover:text-primary"
+                className="label-mono-lg transition-colors hover:text-primary"
               >
                 {item.label}
               </a>
@@ -43,12 +43,12 @@ export function Footer() {
 
           {/* Contatos */}
           <div className="flex flex-col gap-3">
-            <h2 className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+            <h2 className="label-mono text-muted-foreground">
               Contato
             </h2>
             <a
               href={`mailto:${site.email}`}
-              className="font-sans text-sm font-bold uppercase tracking-wide transition-colors hover:text-primary"
+              className="label-mono-lg transition-colors hover:text-primary"
             >
               {site.email}
             </a>
@@ -56,7 +56,7 @@ export function Footer() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-sans text-sm font-bold uppercase tracking-wide transition-colors hover:text-primary"
+              className="label-mono-lg transition-colors hover:text-primary"
             >
               {site.whatsapp.display}
             </a>
@@ -64,7 +64,7 @@ export function Footer() {
 
           {/* Redes sociais */}
           <div className="flex flex-col gap-3">
-            <h2 className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+            <h2 className="label-mono text-muted-foreground">
               Redes sociais
             </h2>
             {site.socials.map((social) => (
@@ -73,7 +73,7 @@ export function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-sans text-sm font-bold uppercase tracking-wide transition-colors hover:text-primary"
+                className="label-mono-lg transition-colors hover:text-primary"
               >
                 {social.label} ↗
               </a>
@@ -90,7 +90,7 @@ export function Footer() {
             {/* Política de Privacidade — LGPD (RNF-08 / Fase 5.6) */}
             <Link
               href="/privacidade"
-              className="font-sans text-xs font-bold uppercase tracking-wide text-muted-foreground transition-colors hover:text-primary"
+              className="label-mono text-muted-foreground transition-colors hover:text-primary"
             >
               Política de Privacidade
             </Link>

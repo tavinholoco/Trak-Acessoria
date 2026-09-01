@@ -29,7 +29,7 @@ export function Projects() {
                   unoptimized
                   className="h-2/3 w-2/3 object-contain transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110"
                 />
-                <span className="absolute left-4 top-4 font-sans text-xs font-bold tracking-[0.25em] text-muted-foreground">
+                <span className="absolute left-4 top-4 label-mono text-muted-foreground">
                   {project.index}
                 </span>
               </div>
@@ -37,7 +37,7 @@ export function Projects() {
                   subia e descia conforme a descrição tinha 3 ou 4 linhas, e os
                   cards não alinhavam entre si (Fase A.5). */}
               <div className="flex flex-1 flex-col gap-2 p-5">
-                <p className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                <p className="label-mono text-muted-foreground">
                   {project.client} · {project.year}
                 </p>
                 <h3 className="font-display text-xl font-black uppercase leading-tight tracking-tight">
@@ -52,7 +52,7 @@ export function Projects() {
                   <p className="font-display text-4xl font-black leading-none tracking-tight text-primary md:text-5xl">
                     {project.metric.value}
                   </p>
-                  <p className="mt-2 font-sans text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
+                  <p className="mt-2 label-mono text-muted-foreground">
                     {project.metric.label}
                   </p>
                 </div>

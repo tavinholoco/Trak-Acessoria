@@ -27,10 +27,10 @@ export function Poster({ id, index, title, tone = "default", children }: PosterP
     >
       <div className="mx-auto w-full max-w-[1440px] px-4 py-20 md:px-10 md:py-28">
         <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
-          {/* Índice grande em vermelho: texto grande (AA 3:1 sobre preto — PRD §9.3). */}
-          <span className="font-display text-5xl font-black leading-none text-primary md:text-7xl">
-            {index}
-          </span>
+          {/* Índice em mono (Fase B.1): o contraste de peso e de família
+              contra o título em Fraunces 900 é a hierarquia — o número marca,
+              o título fala. Vermelho em texto grande (AA 3:1 — PRD §9.3). */}
+          <span className="index-mono text-primary">{index}</span>
           <h2 id={`${id}-titulo`} className="display-2">
             {title}
           </h2>

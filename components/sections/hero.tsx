@@ -47,7 +47,7 @@ export function Hero() {
         </p>
         <a
           href="#servicos"
-          className="font-sans text-xs font-bold uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-primary"
+          className="label-mono text-muted-foreground transition-colors hover:text-primary"
         >
           Role para ver ↓
         </a>

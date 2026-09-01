@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Fraunces, IBM_Plex_Mono, Inter } from "next/font/google";
 import "./globals.css";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -22,6 +22,20 @@ const fraunces = Fraunces({
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+});
+
+/**
+ * Terceiro papel tipográfico (Fase B.1): índices de seção, labels, metadados
+ * e microcopy em caixa-alta. Fora dos títulos em Fraunces, a página era toda
+ * Inter — a fonte mais neutra possível —, então a identidade sumia no texto
+ * de apoio. A mono é o que mais aproxima da referência editorial.
+ * Não é fonte variável no Google Fonts: os pesos vão explícitos.
+ */
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
@@ -93,7 +107,7 @@ export default function RootLayout({
     <html
       lang="pt-BR"
       suppressHydrationWarning
-      className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
+      className={`${fraunces.variable} ${inter.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {/* Dados estruturados (RF-12 / Fase 5.2) — Organization + ProfessionalService */}
