@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { PosterToneProvider } from "@/components/sections/poster-tone";
 import { cn } from "@/lib/utils";
 
 interface PosterProps {
@@ -34,6 +35,18 @@ const toneClass: Record<NonNullable<PosterProps["tone"]>, string> = {
 };
 
 /**
+ * Só os tokens do tom, sem a pintura do bloco. Vai por contexto até as
+ * superfícies que saem em Portal (o popup do Select) e por isso escapam da
+ * herança das custom properties — ver poster-tone.tsx.
+ */
+const toneTokens: Record<NonNullable<PosterProps["tone"]>, string> = {
+  default: "",
+  paper: "",
+  invert: "tone-invert-tokens",
+  accent: "tone-accent-tokens",
+};
+
+/**
  * Wrapper "cartaz" reutilizável (PRD §6 / E: Poster Design).
  * Cada seção é um pôster independente: índice grande, título display e
  * conteúdo. Server component — sem estado.
@@ -49,13 +62,21 @@ export function Poster({ id, index, title, tone = "default", children }: PosterP
         <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
           {/* Índice em mono (Fase B.1): o contraste de peso e de família
               contra o título em Fraunces 900 é a hierarquia — o número marca,
-              o título fala. Vermelho em texto grande (AA 3:1 — PRD §9.3). */}
-          <span className="index-mono text-primary">{index}</span>
+              o título fala. Vermelho em texto grande (AA 3:1 — PRD §9.3).
+              O `data-slot` deixa o tom azul dar a ele um creme próprio sem
+              precisar sequestrar o --primary da seção inteira. */}
+          <span data-slot="poster-index" className="index-mono text-primary">
+            {index}
+          </span>
           <h2 id={`${id}-titulo`} className="display-2">
             {title}
           </h2>
         </div>
-        <div className="mt-12 md:mt-16">{children}</div>
+        <div className="mt-12 md:mt-16">
+          <PosterToneProvider tone={toneTokens[tone]}>
+            {children}
+          </PosterToneProvider>
+        </div>
       </div>
     </section>
   );

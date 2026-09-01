@@ -1,18 +1,6 @@
 import type { NextConfig } from "next";
 
 /**
- * Headers de segurança (RNF-05 / auditoria de segurança pré-publicação).
- *
- * CSP: `script-src 'unsafe-inline'` é OBRIGATÓRIO para o Next.js (App Router
- * injeta scripts inline de RSC flight data e o JSON-LD é script inline). A
- * proteção efetiva é o allowlist: apenas `self` + Plausible (injetado sob
- * consentimento LGPD) + Vercel Speed Insights. Um script externo arbitrário
- * (ex.: vindo de XSS) é bloqueado. Para remover o 'unsafe-inline', migrar
- * para CSP com nonce via middleware (documentado como melhoria futura).
- *
- * `style-src 'unsafe-inline'` é necessário (Next/Tailwind).
- */
-/**
  * Em desenvolvimento o React usa `eval()` para reconstruir stack traces entre
  * ambientes; sem 'unsafe-eval' a CSP bloqueia e o overlay do Next abre com um
  * erro em toda sessão (Fase C.4). O build de produção nunca usa eval, então a
@@ -27,6 +15,18 @@ const scriptSrc = [
   .filter(Boolean)
   .join(" ");
 
+/**
+ * Headers de segurança (RNF-05 / auditoria de segurança pré-publicação).
+ *
+ * CSP: `script-src 'unsafe-inline'` é OBRIGATÓRIO para o Next.js (App Router
+ * injeta scripts inline de RSC flight data e o JSON-LD é script inline). A
+ * proteção efetiva é o allowlist: apenas `self` + Plausible (injetado sob
+ * consentimento LGPD) + Vercel Speed Insights. Um script externo arbitrário
+ * (ex.: vindo de XSS) é bloqueado. Para remover o 'unsafe-inline', migrar
+ * para CSP com nonce via middleware (documentado como melhoria futura).
+ *
+ * `style-src 'unsafe-inline'` é necessário (Next/Tailwind).
+ */
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "DENY" },

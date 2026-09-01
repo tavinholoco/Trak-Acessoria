@@ -265,29 +265,49 @@
  *
  * O fundo do bloco é `--secondary` (e não `--background`) porque os cards de
  * dentro usam `bg-background`: precisam de um degrau contra a seção.
+ *
+ * Cada tom vem em duas classes:
+ *
+ *   `.tone-*`         — os tokens + a pintura do bloco (fundo e cor do texto)
+ *   `.tone-*-tokens`  — só os tokens, sem pintar nada
+ *
+ * A segunda existe por causa de superfícies flutuantes: o popup do Select sai
+ * em Portal, direto no <body>, então não é descendente da seção e a herança
+ * de custom properties não o alcança — ele abria com o tema da raiz, um painel
+ * quase preto sobre o bloco creme do Contato. Aplicando `-tokens` no popup ele
+ * recebe a paleta do bloco sem herdar o fundo dele (continua usando --popover).
  */
 
-/* Bloco invertido: o pôster roda a paleta do tema oposto — papel sobre preto
-   no tema claro, preto sobre papel no escuro. É o que dá ritmo real à rolagem;
-   #0F0F0F contra #1C1C1C era imperceptível. */
-.tone-invert {
+.tone-invert,
+.tone-invert-tokens {
   --background: #0f0f0f;
   --foreground: #f7f4ee;
   --secondary: #1c1c1c;
   --muted-foreground: #a9a295;
   --border: #f7f4ee1a;
   --input: #f7f4ee26;
-  background-color: var(--secondary);
-  color: var(--foreground);
+  --popover: #161616;
+  --popover-foreground: #f7f4ee;
 }
 
-.dark .tone-invert {
+.dark .tone-invert,
+.dark .tone-invert-tokens {
   --background: #f7f4ee;
   --foreground: #0f0f0f;
   --secondary: #e8e2d6;
   --muted-foreground: #6b6559;
   --border: #0f0f0f1a;
   --input: #0f0f0f26;
+  --popover: #f7f4ee;
+  --popover-foreground: #0f0f0f;
+}
+
+/* Bloco invertido: o pôster roda a paleta do tema oposto — papel sobre preto
+   no tema claro, preto sobre papel no escuro. É o que dá ritmo real à rolagem;
+   #0F0F0F contra #1C1C1C era imperceptível. */
+.tone-invert {
+  background-color: var(--secondary);
+  color: var(--foreground);
 }
 
 /*
@@ -295,21 +315,40 @@
  * e nunca tinha saído do /storyboard. Idêntico nos dois temas — é uma âncora
  * fixa no meio da página.
  *
- * Os cremes translúcidos foram escolhidos pelo contraste sobre #1D3BFF:
- *   85% → 4,76:1  (texto normal, AA)
- *   70% → 3,62:1  (texto grande, AA) — usado no índice do pôster, que em
- *                  vermelho sobre azul seria ilegível e brigaria de cor.
+ * Contrastes sobre #1D3BFF: creme cheio = 6,1:1 (texto normal, AA), creme a
+ * 85% = 4,76:1 (texto normal, AA), creme a 70% = 3,62:1 (texto grande, AA).
+ *
+ * --primary fica no creme cheio, e não a 70%, para o par primary/
+ * primary-foreground continuar legível se um CTA entrar na seção: fundo creme
+ * com texto azul dá 6,1:1. O índice do pôster, que é o único lugar onde o
+ * vermelho da marca aparecia, ganha o creme a 70% por uma regra própria mais
+ * abaixo — é texto grande, e assim a hierarquia contra o título não depende
+ * de sequestrar o --primary.
  */
-.tone-accent {
+.tone-accent,
+.tone-accent-tokens {
   --background: #1d3bff;
   --foreground: #f7f4ee;
   --secondary: #1631d6;
   --muted-foreground: #f7f4eed9;
-  --primary: #f7f4eeb3;
+  --primary: #f7f4ee;
+  --primary-foreground: #1d3bff;
+  --ring: #f7f4ee;
   --border: #f7f4ee40;
   --input: #f7f4ee40;
+  --popover: #1631d6;
+  --popover-foreground: #f7f4ee;
+}
+
+.tone-accent {
   background-color: var(--background);
   color: var(--foreground);
+}
+
+/* O índice do pôster no bloco azul: creme a 70% (3,62:1, texto grande) para
+   marcar hierarquia contra o título em creme cheio. */
+.tone-accent [data-slot="poster-index"] {
+  color: #f7f4eeb3;
 }
 
 /* ============ TEXTURAS ============ */

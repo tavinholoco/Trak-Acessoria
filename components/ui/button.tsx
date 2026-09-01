@@ -13,11 +13,13 @@ import { cn } from "@/lib/utils"
  * (RF-11) dos cards de Serviços, que invertem para o vermelho.
  */
 const buttonVariants = cva(
-  // A cor da borda é declarada por variante, nunca na base: `border-transparent`
-  // aqui e `border-foreground` na variante são dois utilitários sem modificador,
-  // então a disputa se resolve pela ordem do CSS gerado — e o transparente
-  // vencia, deixando o botão `outline` sem contorno nenhum.
-  "group/button inline-flex shrink-0 items-center justify-center rounded-none border-2 font-bold tracking-[0.12em] uppercase whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  // Cor da borda e tracking são declarados por variante/tamanho, nunca na base:
+  // dois utilitários sem modificador (`border-transparent` na base contra
+  // `border-foreground` na variante, `tracking-[0.12em]` contra
+  // `tracking-[0.1em]`) não têm especificidade para desempatar, e quem vence é
+  // a ordem do CSS gerado. Era o que apagava a borda do botão `outline` e o que
+  // deixava o tracking do tamanho `xs` sem efeito.
+  "group/button inline-flex shrink-0 items-center justify-center rounded-none border-2 font-bold uppercase whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
@@ -37,10 +39,10 @@ const buttonVariants = cva(
       },
       size: {
         default:
-          "h-11 gap-2 px-5 text-xs has-data-[icon=inline-end]:pr-4 has-data-[icon=inline-start]:pl-4",
+          "h-11 gap-2 px-5 text-xs tracking-[0.12em] has-data-[icon=inline-end]:pr-4 has-data-[icon=inline-start]:pl-4",
         xs: "h-8 gap-1.5 px-3 text-[0.6875rem] tracking-[0.1em] has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-10 gap-2 px-4 text-xs has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3 [&_svg:not([class*='size-'])]:size-3.5",
-        lg: "h-14 gap-2.5 px-7 text-sm has-data-[icon=inline-end]:pr-5 has-data-[icon=inline-start]:pl-5",
+        sm: "h-10 gap-2 px-4 text-xs tracking-[0.12em] has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3 [&_svg:not([class*='size-'])]:size-3.5",
+        lg: "h-14 gap-2.5 px-7 text-sm tracking-[0.14em] has-data-[icon=inline-end]:pr-5 has-data-[icon=inline-start]:pl-5",
         icon: "size-11",
         "icon-xs": "size-8 [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-10",

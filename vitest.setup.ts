@@ -39,6 +39,19 @@ if (typeof window !== "undefined") {
     writable: true,
     value: IntersectionObserverMock,
   });
+
+  // Mock do ResizeObserver (usado pelo ConsentBanner para medir o painel e
+  // reservar a altura dele no fluxo). jsdom também não implementa este.
+  class ResizeObserverMock {
+    observe = vi.fn();
+    unobserve = vi.fn();
+    disconnect = vi.fn();
+  }
+  Object.defineProperty(window, "ResizeObserver", {
+    configurable: true,
+    writable: true,
+    value: ResizeObserverMock,
+  });
 }
 
 // Desmonta a árvore e restaura mocks após cada teste.

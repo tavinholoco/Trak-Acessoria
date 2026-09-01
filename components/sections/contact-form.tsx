@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useForm, type Resolver, type SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
+import { usePosterTone } from "@/components/sections/poster-tone";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -42,6 +43,9 @@ type SubmitStatus = "idle" | "success" | "error";
  */
 export function ContactForm() {
   const [status, setStatus] = useState<SubmitStatus>("idle");
+  // O popup do Select sai em Portal, fora da seção: sem isso ele abre com o
+  // tema da raiz em cima do bloco tonalizado do Contato (ver poster-tone.tsx).
+  const posterTone = usePosterTone();
 
   const form = useForm<ContactFormValues>({
     // O schema é estrito (sem "" no enum); o tipo do formulário amplia
@@ -152,7 +156,7 @@ export function ContactForm() {
                     <SelectValue placeholder="Selecione o tipo de empresa" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent>
+                <SelectContent className={posterTone}>
                   {companyTypeOptions.map((option) => (
                     <SelectItem key={option.value} value={option.value}>
                       {option.label}
