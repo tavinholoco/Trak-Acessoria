@@ -20,18 +20,20 @@ export function Hero() {
           <span className="block">Arte é</span>
           <span className="block text-primary">Negócio.</span>
         </h1>
-        <div className="mt-8 flex flex-wrap items-center gap-4">
+        {/* Fase A.1: `lg` (56px) — o `sm` de 28px não sustentava a headline
+            de ~270px que fica logo acima. */}
+        <div className="mt-10 flex flex-wrap items-center gap-4">
           <a
             href="#servicos"
             data-track-cta="ver-servicos"
-            className={buttonVariants({ size: "sm" })}
+            className={buttonVariants({ size: "lg" })}
           >
             VER SERVIÇOS
           </a>
           <a
             href="#contato"
             data-track-cta="falar-conosco"
-            className={buttonVariants({ variant: "outline", size: "sm" })}
+            className={buttonVariants({ variant: "outline", size: "lg" })}
           >
             FALAR CONOSCO
           </a>

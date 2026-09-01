@@ -24,9 +24,13 @@ export function Marquee() {
   return (
     <>
       {/* Faixa de texto em movimento contínuo (RF-04) */}
+      {/* `py-8`: com `display-2` (até 72px) e line-height 0.95, o `py-4`
+          anterior deixava o til de "DIVULGAÇÃO" e a cedilha de "SERVIÇOS"
+          saindo da faixa vermelha — e, fora dela, texto preto sobre fundo
+          preto some (Fase A.3). */}
       <section
         aria-hidden="true"
-        className="border-y border-border bg-primary py-4 text-background"
+        className="border-y border-border bg-primary py-8 text-background"
       >
         <div className="flex w-max min-w-full animate-marquee gap-0 whitespace-nowrap">
           {[0, 1].map((copy) => (
