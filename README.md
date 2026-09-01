@@ -36,6 +36,7 @@ artistas que se organizam como negócio.
 | Icons | **lucide-react** | Ícones (uso mínimo — identidade tipográfica) |
 | Utilitários CSS | **class-variance-authority**, **clsx**, **tailwind-merge** | `cn()` em `lib/utils.ts` |
 | Animações | **tw-animate-css** + CSS/IntersectionObserver | Transições leves sem lib pesada |
+| Tipografia | **Fraunces** (display) + **Inter** (corpo) + **IBM Plex Mono** (labels e dados) via `next/font` | Três papéis tipográficos, self-hosted e sem layout shift |
 | Tema | **next-themes** | Dark mode persistido (preto `#0F0F0F` default) |
 | Formulário | **react-hook-form** + **@hookform/resolvers** + **Zod** | Validação client + server |
 | Toasts | **sonner** | Feedback do envio do formulário |
@@ -53,12 +54,15 @@ artistas que se organizam como negócio.
 ## ✨ Funcionalidades
 
 - **Página única** com navegação por âncoras: Início · Serviços · Projetos · Equipe · Contato.
-- **Seções em bloco-pôster**: Hero gigante, marquee infinito, grid de 6 serviços, cases com métricas,
-  equipe editorial e FAQ em accordion.
+- **Seções em bloco-pôster** numeradas de 03 a 07: grid de 6 serviços, cases com métricas, equipe
+  editorial, dúvidas em accordion e contato. Antes delas, o Hero gigante, o marquee infinito e um
+  banner com as ilustrações autorais em colagem sangrando nas bordas.
 - **Formulário de contato** funcional com validação Zod (client + server), envio via **Resend**
   e feedback com **sonner**.
 - **Botão de WhatsApp** como canal reserva.
-- **Dark mode** alternável e persistido (identidade brutalista com preto `#0F0F0F`).
+- **Dark mode** alternável e persistido (identidade brutalista com preto `#0F0F0F`). O tema escuro é
+  escuro na página inteira: as seções neutras variam por um degrau discreto e o ritmo vem da cor da
+  marca — o bloco azul `#1D3BFF` da Equipe, a faixa e a barra de consentimento em vermelho.
 - **Animações** com respeito a `prefers-reduced-motion`: marquee, parallax leve, hover exagerado, reveal on scroll.
 - **SEO técnico**: metadados, Open Graph/Twitter, `sitemap.xml`, `robots.txt` e dados estruturados JSON-LD.
 - **Acessibilidade WCAG AA**: navegação por teclado, contraste AA, `@axe-core` no E2E.
@@ -92,7 +96,7 @@ Trak-Acessoria/
 ├── art/                        # Ilustrações SVG autorais
 ├── e2e/                        # Testes Playwright (smoke, seo, consent, privacidade)
 ├── vitest.config.mts           # Config do Vitest + gate de cobertura
-├── vitest.setup.ts             # Setup: jest-dom + mocks (matchMedia, IntersectionObserver)
+├── vitest.setup.ts             # Setup: jest-dom + mocks (matchMedia, Intersection/ResizeObserver)
 ├── playwright.config.ts        # E2E: 3 browsers + mobile 375px (porta 3100)
 └── .github/workflows/ci.yml    # CI: lint + typecheck + vitest + coverage + playwright
 ```
@@ -231,7 +235,7 @@ Todo o conteúdo da página fica isolado em `data/` — edite os arquivos **sem 
 | `data/services.ts` | Os 6 serviços (grid da seção Serviços) |
 | `data/projects.ts` | Cases/pôsteres com métricas (seção Projetos) |
 | `data/team.ts` | Integrantes e mini-bios (seção Equipe) |
-| `data/faq.ts` | Perguntas do accordion (FAQ, junto ao Contato) |
+| `data/faq.ts` | Perguntas do accordion (seção Dúvidas) |
 | `data/marquee.ts` | Itens do marquee infinito e headline do banner |
 | `data/privacidade.ts` | Política de Privacidade (LGPD) |
 
