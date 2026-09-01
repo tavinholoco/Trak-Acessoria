@@ -23,12 +23,19 @@ function snapshotConsentVisible(): boolean {
  * - "Aceitar" habilita o tracking; "Recusar" mantém tudo desligado.
  * - `useSyncExternalStore` re-renderiza na hora da decisão (subscribeConsent).
  *
- * O painel é `fixed` na base da tela e, sem reservar espaço, cobria a última
- * linha do rodapé — inclusive o link "Política de Privacidade", que é
- * justamente para onde o banner manda o visitante. Com a página rolada até o
- * fim o link ficava atrás do painel e o clique não chegava nele. Por isso o
- * espaçador irmão: ele mede o painel e devolve a altura ao fluxo, empurrando o
- * rodapé para cima enquanto o aviso estiver na tela.
+ * Formato: barra de largura total colada na base, no vermelho da marca
+ * (`tone-primary`). Era um cartão flutuante centralizado com borda de 2px — a
+ * única superfície da página fora do sistema de cor, e alta o bastante (168px
+ * no desktop, 237px no mobile) para tornar cara a faixa que ela precisa
+ * reservar. Em barra, a mesma mensagem cabe numa linha no desktop.
+ *
+ * A reserva de espaço continua sendo necessária, e não é detalhe estético: a
+ * barra é `fixed`, então cobria a última linha do rodapé — inclusive o link
+ * "Política de Privacidade", justamente para onde o aviso manda o visitante.
+ * Com a página rolada até o fim não havia como tirar o link de baixo dela, e o
+ * clique não chegava nele. O espaçador irmão mede a barra e devolve a altura ao
+ * fluxo, dando folga de rolagem enquanto o aviso estiver na tela. Encolher a
+ * barra reduz essa faixa; nenhum formato de elemento fixo elimina.
  */
 export function ConsentBanner() {
   const visible = useSyncExternalStore(
@@ -64,39 +71,42 @@ export function ConsentBanner() {
         ref={asideRef}
         role="region"
         aria-label="Aviso de privacidade e consentimento de análise"
-        className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-2xl border-2 border-border bg-background p-5 texture-grain"
+        className="tone-primary fixed inset-x-0 bottom-0 z-50 border-t-2 border-foreground/40"
       >
-        <p className="font-sans text-sm leading-relaxed text-foreground">
-          Usamos uma ferramenta de análise anônima para entender como a página é
-          usada (profundidade de rolagem e cliques), melhorando a experiência.
-          Seus dados não são vendidos.{" "}
-          <a
-            href="/privacidade"
-            className="font-bold underline decoration-primary underline-offset-4 transition-colors hover:text-primary"
-          >
-            Saiba mais na Política de Privacidade
-          </a>
-          .
-        </p>
-        <div className="mt-4 flex flex-wrap gap-3">
-          <button
-            type="button"
-            onClick={() => setConsent("accepted")}
-            className={cn(buttonVariants({ size: "sm" }))}
-          >
-            ACEITAR
-          </button>
-          <button
-            type="button"
-            onClick={() => setConsent("declined")}
-            className={cn(buttonVariants({ size: "sm", variant: "outline" }))}
-          >
-            RECUSAR
-          </button>
+        <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-4 px-4 py-4 md:flex-row md:items-center md:justify-between md:gap-10 md:px-10">
+          <p className="max-w-3xl font-sans text-sm leading-relaxed">
+            Usamos análise anônima — profundidade de rolagem e cliques — para
+            melhorar a página. Seus dados não são vendidos.{" "}
+            <a
+              href="/privacidade"
+              className="font-bold underline underline-offset-4 transition-opacity hover:opacity-80"
+            >
+              Saiba mais na Política de Privacidade
+            </a>
+            .
+          </p>
+          <div className="flex shrink-0 flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={() => setConsent("accepted")}
+              // `hover:opacity-85`: no vermelho, o hover padrão do botão iria
+              // para `bg-foreground`, que aqui é o mesmo creme do estado normal.
+              className={cn(buttonVariants({ size: "sm" }), "hover:opacity-85")}
+            >
+              ACEITAR
+            </button>
+            <button
+              type="button"
+              onClick={() => setConsent("declined")}
+              className={cn(buttonVariants({ size: "sm", variant: "outline" }))}
+            >
+              RECUSAR
+            </button>
+          </div>
         </div>
       </aside>
 
-      {/* Espaço no fluxo equivalente ao painel — ver nota acima. */}
+      {/* Espaço no fluxo equivalente à barra — ver nota acima. */}
       <div aria-hidden="true" style={{ height: alturaReservada }} />
     </>
   );

@@ -345,6 +345,35 @@
   color: var(--foreground);
 }
 
+/*
+ * Bloco vermelho: usado pela barra de consentimento (Fase 5.5), a única
+ * superfície da página que ainda não participava do sistema de cor.
+ *
+ * Contrastes sobre #D41F16: creme cheio = 4,77:1 (texto normal, AA), nos dois
+ * sentidos — texto creme sobre o vermelho e texto vermelho no botão creme.
+ * O --muted-foreground vai no creme cheio de propósito: a 85% ele cai para
+ * 3,77:1 e reprovaria em texto normal.
+ */
+.tone-primary,
+.tone-primary-tokens {
+  --background: #d41f16;
+  --foreground: #f7f4ee;
+  --secondary: #b3201a;
+  --muted-foreground: #f7f4ee;
+  --primary: #f7f4ee;
+  --primary-foreground: #d41f16;
+  --ring: #f7f4ee;
+  --border: #f7f4ee59;
+  --input: #f7f4ee59;
+  --popover: #b3201a;
+  --popover-foreground: #f7f4ee;
+}
+
+.tone-primary {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
 /* O índice do pôster no bloco azul: creme a 70% (3,62:1, texto grande) para
    marcar hierarquia contra o título em creme cheio. */
 .tone-accent [data-slot="poster-index"] {
