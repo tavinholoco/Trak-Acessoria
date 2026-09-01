@@ -109,7 +109,6 @@ export function ContactForm() {
                   <Input
                     placeholder="Seu nome"
                     autoComplete="name"
-                    className="h-10"
                     {...field}
                   />
                 </FormControl>
@@ -129,7 +128,6 @@ export function ContactForm() {
                     type="email"
                     placeholder="voce@galeria.com.br"
                     autoComplete="email"
-                    className="h-10"
                     {...field}
                   />
                 </FormControl>
@@ -176,7 +174,7 @@ export function ContactForm() {
               <FormControl>
                 <Textarea
                   placeholder="Conte sobre o seu momento e o que você precisa…"
-                  className="min-h-28"
+                  className="min-h-36"
                   {...field}
                 />
               </FormControl>
