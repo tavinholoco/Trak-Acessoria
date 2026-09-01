@@ -12,7 +12,7 @@ export function Hero() {
     <section
       id="inicio"
       aria-labelledby="inicio-titulo"
-      className="relative flex flex-col gap-10 overflow-hidden px-4 py-10 md:px-10"
+      className="relative flex flex-col gap-10 overflow-hidden px-4 py-10 texture-grain md:px-10"
     >
       {/* Tipografia gigante */}
       <div className="flex flex-col pt-6 md:pt-10">
@@ -20,18 +20,20 @@ export function Hero() {
           <span className="block">Arte é</span>
           <span className="block text-primary">Negócio.</span>
         </h1>
-        <div className="mt-8 flex flex-wrap items-center gap-4">
+        {/* Fase A.1: `lg` (56px) — o `sm` de 28px não sustentava a headline
+            de ~270px que fica logo acima. */}
+        <div className="mt-10 flex flex-wrap items-center gap-4">
           <a
             href="#servicos"
             data-track-cta="ver-servicos"
-            className={buttonVariants({ size: "sm" })}
+            className={buttonVariants({ size: "lg" })}
           >
             VER SERVIÇOS
           </a>
           <a
             href="#contato"
             data-track-cta="falar-conosco"
-            className={buttonVariants({ variant: "outline", size: "sm" })}
+            className={buttonVariants({ variant: "outline", size: "lg" })}
           >
             FALAR CONOSCO
           </a>
@@ -45,7 +47,7 @@ export function Hero() {
         </p>
         <a
           href="#servicos"
-          className="font-sans text-xs font-bold uppercase tracking-[0.25em] text-muted-foreground transition-colors hover:text-primary"
+          className="label-mono text-muted-foreground transition-colors hover:text-primary"
         >
           Role para ver ↓
         </a>

@@ -23,7 +23,7 @@ export default function PrivacidadePage() {
       <div className="mx-auto max-w-3xl px-4 py-16 md:px-10 md:py-24">
         {/* Cabeçalho */}
         <header className="border-b border-border pb-10">
-          <p className="mb-6 font-sans text-xs font-bold uppercase tracking-[0.25em] text-muted-foreground">
+          <p className="mb-6 label-mono text-muted-foreground">
             Última atualização · {privacy.updatedAt}
           </p>
           <h1 className="display-1">

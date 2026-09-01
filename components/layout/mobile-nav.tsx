@@ -49,7 +49,7 @@ export function MobileNav() {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="border-b border-border py-4 font-sans text-lg font-bold uppercase tracking-wide transition-colors hover:text-primary"
+              className="border-b border-border py-4 font-mono text-base font-bold uppercase tracking-[0.08em] transition-colors hover:text-primary"
             >
               {item.label}
             </a>

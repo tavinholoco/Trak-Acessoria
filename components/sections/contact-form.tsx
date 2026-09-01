@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useForm, type Resolver, type SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
+import { usePosterTone } from "@/components/sections/poster-tone";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -42,6 +43,9 @@ type SubmitStatus = "idle" | "success" | "error";
  */
 export function ContactForm() {
   const [status, setStatus] = useState<SubmitStatus>("idle");
+  // O popup do Select sai em Portal, fora da seção: sem isso ele abre com o
+  // tema da raiz em cima do bloco tonalizado do Contato (ver poster-tone.tsx).
+  const posterTone = usePosterTone();
 
   const form = useForm<ContactFormValues>({
     // O schema é estrito (sem "" no enum); o tipo do formulário amplia
@@ -109,7 +113,6 @@ export function ContactForm() {
                   <Input
                     placeholder="Seu nome"
                     autoComplete="name"
-                    className="h-10"
                     {...field}
                   />
                 </FormControl>
@@ -129,7 +132,6 @@ export function ContactForm() {
                     type="email"
                     placeholder="voce@galeria.com.br"
                     autoComplete="email"
-                    className="h-10"
                     {...field}
                   />
                 </FormControl>
@@ -154,7 +156,7 @@ export function ContactForm() {
                     <SelectValue placeholder="Selecione o tipo de empresa" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent>
+                <SelectContent className={posterTone}>
                   {companyTypeOptions.map((option) => (
                     <SelectItem key={option.value} value={option.value}>
                       {option.label}
@@ -176,7 +178,7 @@ export function ContactForm() {
               <FormControl>
                 <Textarea
                   placeholder="Conte sobre o seu momento e o que você precisa…"
-                  className="min-h-28"
+                  className="min-h-36"
                   {...field}
                 />
               </FormControl>
@@ -201,7 +203,7 @@ export function ContactForm() {
           {status === "success" && (
             <p
               aria-live="polite"
-              className="border border-border bg-background px-4 py-3 font-sans text-sm font-bold uppercase tracking-wide text-primary"
+              className="border border-border bg-background px-4 py-3 label-mono-lg text-primary"
             >
               Mensagem enviada com sucesso! ✓
             </p>
@@ -209,7 +211,7 @@ export function ContactForm() {
           {status === "error" && (
             <p
               aria-live="assertive"
-              className="border border-destructive/40 bg-destructive/5 px-4 py-3 font-sans text-sm font-bold uppercase tracking-wide text-destructive"
+              className="border border-destructive/40 bg-destructive/5 px-4 py-3 label-mono-lg text-destructive"
             >
               Não foi possível enviar. Tente novamente ou fale no WhatsApp.
             </p>

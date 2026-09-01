@@ -14,7 +14,7 @@ export function Services() {
           <Reveal key={service.id} delay={(i % 3) * 80}>
             <article className="group flex h-full flex-col gap-6 bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-primary-foreground md:p-8">
               <div className="flex items-start justify-between">
-                <span className="font-sans text-xs font-bold tracking-[0.25em] text-muted-foreground transition-colors group-hover:text-primary-foreground/80">
+                <span className="label-mono text-muted-foreground transition-colors group-hover:text-primary-foreground/80">
                   {service.index}
                 </span>
                 <span
@@ -34,7 +34,7 @@ export function Services() {
                 {service.highlights.map((highlight) => (
                   <li
                     key={highlight}
-                    className="font-sans text-xs font-bold uppercase tracking-wide"
+                    className="label-mono"
                   >
                     ✦ {highlight}
                   </li>

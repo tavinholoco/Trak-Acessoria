@@ -8,7 +8,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
-  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
+  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", "Cascadia Mono",
+    Menlo, monospace;
   --font-display: var(--font-fraunces);
   --font-heading: var(--font-fraunces);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -174,13 +175,21 @@
 
 /* ============ HIERARQUIA — 3 NÍVEIS ============ */
 
+/*
+ * Fase C.5: os 32vw originais (até 600px) só cabiam em palavras de 2 a 4
+ * letras. Com "exposição." no 404, o <h1> media 2973px numa viewport de 1440
+ * e a página ganhava 2207px de rolagem horizontal — e estourava em todas as
+ * larguras testadas, de 768px para cima. O `display-hero` já tinha nascido
+ * como contorno disso (ver o comentário abaixo); agora o próprio display-1
+ * usa uma escala que cabe.
+ */
 @utility display-1 {
   font-family: var(--font-fraunces);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.03em;
   line-height: 0.88;
-  font-size: clamp(4rem, 32vw, 37.5rem); /* 64px → 600px */
+  font-size: clamp(2rem, 11vw, 10rem); /* 32px → 160px */
 }
 
 /* Headline do Hero (Fase 3.1): mesma identidade do display-1, porém com
@@ -208,6 +217,167 @@
   letter-spacing: -0.02em;
   line-height: 0.95;
   font-size: clamp(2.5rem, 5vw, 5rem); /* 40px → 80px */
+}
+
+/* ============ NÍVEL 3 — LABELS E DADOS (MONO) ============ */
+
+/* Eyebrows, metadados e microcopy em caixa-alta (Fase B.1). A mono já tem
+   espacejamento largo por natureza, então o tracking fica menor do que o das
+   versões em Inter que substitui (0.16em contra 0.18–0.25em). */
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.6875rem; /* 11px */
+  line-height: 1.45;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Mesma voz, escala de leitura — links de contato e itens de lista. */
+@utility label-mono-lg {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8125rem; /* 13px */
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Índice do pôster: o número que abre cada seção, ao lado do título em
+   Fraunces. O contraste de peso (mono 700 × display 900) é a hierarquia —
+   o número marca, o título fala. */
+@utility index-mono {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3.6vw, 3rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+/* ============ BLOCOS DE COR (Fase B.3) ============ */
+
+/*
+ * Cada pôster pode assumir um fundo próprio. O truque é reescrever os tokens
+ * (--background, --foreground, --muted-foreground, --border) no próprio
+ * <section>: como o @theme é `inline`, as utilitárias compilam para
+ * `var(--foreground)` e não para `var(--color-foreground)` — então tudo que
+ * está dentro do bloco se re-tematiza sozinho, sem override caso a caso.
+ *
+ * O fundo do bloco é `--secondary` (e não `--background`) porque os cards de
+ * dentro usam `bg-background`: precisam de um degrau contra a seção.
+ *
+ * Cada tom vem em duas classes:
+ *
+ *   `.tone-*`         — os tokens + a pintura do bloco (fundo e cor do texto)
+ *   `.tone-*-tokens`  — só os tokens, sem pintar nada
+ *
+ * A segunda existe por causa de superfícies flutuantes: o popup do Select sai
+ * em Portal, direto no <body>, então não é descendente da seção e a herança
+ * de custom properties não o alcança — ele abria com o tema da raiz, um painel
+ * quase preto sobre o bloco creme do Contato. Aplicando `-tokens` no popup ele
+ * recebe a paleta do bloco sem herdar o fundo dele (continua usando --popover).
+ */
+
+.tone-invert,
+.tone-invert-tokens {
+  --background: #0f0f0f;
+  --foreground: #f7f4ee;
+  --secondary: #1c1c1c;
+  --muted-foreground: #a9a295;
+  --border: #f7f4ee1a;
+  --input: #f7f4ee26;
+  --popover: #161616;
+  --popover-foreground: #f7f4ee;
+}
+
+.dark .tone-invert,
+.dark .tone-invert-tokens {
+  --background: #f7f4ee;
+  --foreground: #0f0f0f;
+  --secondary: #e8e2d6;
+  --muted-foreground: #6b6559;
+  --border: #0f0f0f1a;
+  --input: #0f0f0f26;
+  --popover: #f7f4ee;
+  --popover-foreground: #0f0f0f;
+}
+
+/* Bloco invertido: o pôster roda a paleta do tema oposto — papel sobre preto
+   no tema claro, preto sobre papel no escuro. É o que dá ritmo real à rolagem;
+   #0F0F0F contra #1C1C1C era imperceptível. */
+.tone-invert {
+  background-color: var(--secondary);
+  color: var(--foreground);
+}
+
+/*
+ * Bloco azul: o --accent (#1D3BFF) estava declarado no sistema desde o início
+ * e nunca tinha saído do /storyboard. Idêntico nos dois temas — é uma âncora
+ * fixa no meio da página.
+ *
+ * Contrastes sobre #1D3BFF: creme cheio = 6,1:1 (texto normal, AA), creme a
+ * 85% = 4,76:1 (texto normal, AA), creme a 70% = 3,62:1 (texto grande, AA).
+ *
+ * --primary fica no creme cheio, e não a 70%, para o par primary/
+ * primary-foreground continuar legível se um CTA entrar na seção: fundo creme
+ * com texto azul dá 6,1:1. O índice do pôster, que é o único lugar onde o
+ * vermelho da marca aparecia, ganha o creme a 70% por uma regra própria mais
+ * abaixo — é texto grande, e assim a hierarquia contra o título não depende
+ * de sequestrar o --primary.
+ */
+.tone-accent,
+.tone-accent-tokens {
+  --background: #1d3bff;
+  --foreground: #f7f4ee;
+  --secondary: #1631d6;
+  --muted-foreground: #f7f4eed9;
+  --primary: #f7f4ee;
+  --primary-foreground: #1d3bff;
+  --ring: #f7f4ee;
+  --border: #f7f4ee40;
+  --input: #f7f4ee40;
+  --popover: #1631d6;
+  --popover-foreground: #f7f4ee;
+}
+
+.tone-accent {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/*
+ * Bloco vermelho: usado pela barra de consentimento (Fase 5.5), a única
+ * superfície da página que ainda não participava do sistema de cor.
+ *
+ * Contrastes sobre #D41F16: creme cheio = 4,77:1 (texto normal, AA), nos dois
+ * sentidos — texto creme sobre o vermelho e texto vermelho no botão creme.
+ * O --muted-foreground vai no creme cheio de propósito: a 85% ele cai para
+ * 3,77:1 e reprovaria em texto normal.
+ */
+.tone-primary,
+.tone-primary-tokens {
+  --background: #d41f16;
+  --foreground: #f7f4ee;
+  --secondary: #b3201a;
+  --muted-foreground: #f7f4ee;
+  --primary: #f7f4ee;
+  --primary-foreground: #d41f16;
+  --ring: #f7f4ee;
+  --border: #f7f4ee59;
+  --input: #f7f4ee59;
+  --popover: #b3201a;
+  --popover-foreground: #f7f4ee;
+}
+
+.tone-primary {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* O índice do pôster no bloco azul: creme a 70% (3,62:1, texto grande) para
+   marcar hierarquia contra o título em creme cheio. */
+.tone-accent [data-slot="poster-index"] {
+  color: #f7f4eeb3;
 }
 
 /* ============ TEXTURAS ============ */
