@@ -12,7 +12,7 @@ export function Hero() {
     <section
       id="inicio"
       aria-labelledby="inicio-titulo"
-      className="relative flex flex-col gap-10 overflow-hidden px-4 py-10 md:px-10"
+      className="relative flex flex-col gap-10 overflow-hidden px-4 py-10 texture-grain md:px-10"
     >
       {/* Tipografia gigante */}
       <div className="flex flex-col pt-6 md:pt-10">

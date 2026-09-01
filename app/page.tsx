@@ -12,7 +12,10 @@ import { Team } from "@/components/sections/team";
  */
 export default function Home() {
   return (
-    <main className="min-h-dvh overflow-hidden bg-background text-foreground texture-grain">
+    // O `texture-grain` saiu daqui (Fase C.3): num <main> de ~7.300px ele
+    // virava uma única camada composta do tamanho da página inteira. Agora
+    // cada seção pinta o seu, dentro dos próprios limites.
+    <main className="min-h-dvh overflow-hidden bg-background text-foreground">
       <Hero />
       <Marquee />
       <Services />

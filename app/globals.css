@@ -175,13 +175,21 @@
 
 /* ============ HIERARQUIA — 3 NÍVEIS ============ */
 
+/*
+ * Fase C.5: os 32vw originais (até 600px) só cabiam em palavras de 2 a 4
+ * letras. Com "exposição." no 404, o <h1> media 2973px numa viewport de 1440
+ * e a página ganhava 2207px de rolagem horizontal — e estourava em todas as
+ * larguras testadas, de 768px para cima. O `display-hero` já tinha nascido
+ * como contorno disso (ver o comentário abaixo); agora o próprio display-1
+ * usa uma escala que cabe.
+ */
 @utility display-1 {
   font-family: var(--font-fraunces);
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.03em;
   line-height: 0.88;
-  font-size: clamp(4rem, 32vw, 37.5rem); /* 64px → 600px */
+  font-size: clamp(2rem, 11vw, 10rem); /* 32px → 160px */
 }
 
 /* Headline do Hero (Fase 3.1): mesma identidade do display-1, porém com

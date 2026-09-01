@@ -12,6 +12,21 @@ import type { NextConfig } from "next";
  *
  * `style-src 'unsafe-inline'` é necessário (Next/Tailwind).
  */
+/**
+ * Em desenvolvimento o React usa `eval()` para reconstruir stack traces entre
+ * ambientes; sem 'unsafe-eval' a CSP bloqueia e o overlay do Next abre com um
+ * erro em toda sessão (Fase C.4). O build de produção nunca usa eval, então a
+ * liberação fica restrita ao dev e o header publicado segue idêntico.
+ */
+const isDev = process.env.NODE_ENV !== "production";
+const scriptSrc = [
+  "script-src 'self' 'unsafe-inline'",
+  isDev ? "'unsafe-eval'" : null,
+  "https://plausible.io https://va.vercel-scripts.com",
+]
+  .filter(Boolean)
+  .join(" ");
+
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "DENY" },
@@ -21,7 +36,7 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' https://plausible.io https://va.vercel-scripts.com",
+      scriptSrc,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data:",
       "font-src 'self' data:",

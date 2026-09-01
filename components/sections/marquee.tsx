@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { Parallax } from "@/components/sections/parallax";
 import { bannerHeadline, marqueeItems } from "@/data/marquee";
 import { cn } from "@/lib/utils";
 
@@ -9,7 +10,7 @@ import { cn } from "@/lib/utils";
  * Fase B.4: cada peça carrega sua posição na colagem. Antes eram oito ícones
  * de 80px espalhados numa fileira regular de 1360px — o comentário prometia
  * "colagem psicodélica" e o que saía era uma linha de ícones. Agora as artes
- * vão de 176px a 288px, rotacionadas, sobrepostas por margem negativa e
+ * vão de 176px a 384px, rotacionadas, sobrepostas por margem negativa e
  * desalinhadas na vertical; a fileira é mais larga que a tela e sangra nas
  * duas bordas (o <section> tem overflow-hidden).
  *
@@ -96,7 +97,7 @@ export function Marquee() {
       {/* Banner ilustrado — colagem psicodélica (Fase 3.8 / B.4) */}
       <section
         aria-labelledby="banner-titulo"
-        className="relative overflow-hidden border-b border-border bg-secondary texture-lines"
+        className="relative overflow-hidden border-b border-border bg-secondary texture-lines texture-grain"
       >
         <div className="mx-auto w-full max-w-[1440px] px-4 pt-14 md:px-10 md:pt-20">
           <h2 id="banner-titulo" className="display-2">
@@ -108,8 +109,13 @@ export function Marquee() {
         </div>
 
         {/* Fileira em largura total: mais larga que a tela, centralizada e
-            recortada pelas bordas do <section>. */}
-        <div className="flex w-full items-center justify-center pt-6 pb-14 md:pt-4 md:pb-20">
+            recortada pelas bordas do <section>. O Parallax (Fase C.1) desloca
+            a colagem contra a rolagem — respeita prefers-reduced-motion e usa
+            um único listener com rAF. */}
+        <Parallax
+          speed={36}
+          className="flex w-full items-center justify-center pt-6 pb-14 md:pt-4 md:pb-20"
+        >
           {bannerArt.map((art) => (
             <figure
               key={art.src}
@@ -129,7 +135,7 @@ export function Marquee() {
               />
             </figure>
           ))}
-        </div>
+        </Parallax>
       </section>
     </>
   );

@@ -43,7 +43,7 @@ export function Poster({ id, index, title, tone = "default", children }: PosterP
     <section
       id={id}
       aria-labelledby={`${id}-titulo`}
-      className={cn("border-t border-border", toneClass[tone])}
+      className={cn("border-t border-border texture-grain", toneClass[tone])}
     >
       <div className="mx-auto w-full max-w-[1440px] px-4 py-20 md:px-10 md:py-28">
         <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
