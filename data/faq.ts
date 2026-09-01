@@ -21,7 +21,7 @@ export const faq: FaqItem[] = [
     id: "editais-e-incentivo",
     question: "Vocês atendem editais e leis de incentivo?",
     answer:
-      "Sim. Acompanhamos todo o ciclo: mapeamento de oportunidades, escrita do projeto, inscrição, captação e prestação de contas — incluindo Rouanet e fomento estadual/municipal.",
+      "Sim. Acompanhamos todo o ciclo: mapeamento de oportunidades, escrita do projeto, inscrição, captação e prestação de contas, incluindo Rouanet e fomento estadual/municipal.",
   },
   {
     id: "atendimento-remoto",
@@ -33,6 +33,6 @@ export const faq: FaqItem[] = [
     id: "quanto-custa",
     question: "Quanto custa a assessoria?",
     answer:
-      "Cada projeto é único. Após o diagnóstico inicial, enviamos uma proposta sob medida com escopo, prazos e investimento — sem surpresas no meio do caminho.",
+      "Cada projeto é único. Após o diagnóstico inicial, enviamos uma proposta sob medida com escopo, prazos e investimento, sem surpresas no meio do caminho.",
   },
 ];

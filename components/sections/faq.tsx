@@ -27,7 +27,7 @@ export function Faq() {
               Perguntas frequentes
             </h3>
             <p className="font-sans text-sm text-muted-foreground">
-              As dúvidas que mais aparecem no primeiro contato — de quem
+              As dúvidas que mais aparecem no primeiro contato, de quem
               atendemos a como funciona a conversa inicial.
             </p>
             <a

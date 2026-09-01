@@ -81,7 +81,7 @@ export default function StoryboardPage() {
         <header className="flex flex-wrap items-end justify-between gap-6 border-b border-border pb-8">
           <div>
             <Badge variant="outline" className="mb-4 rounded-none font-sans">
-              STORYBOARD — DEV ONLY
+              STORYBOARD / DEV ONLY
             </Badge>
             <h1 className="display-2">Trak<br />Design System</h1>
           </div>
@@ -129,17 +129,17 @@ export default function StoryboardPage() {
           </div>
           <div className="grid gap-10 md:grid-cols-2">
             <div className="flex flex-col gap-4">
-              <h3 className="display-2">Nível 1 — 300–600px</h3>
+              <h3 className="display-2">Nível 1: 300–600px</h3>
               <p className="font-sans text-sm text-muted-foreground">
                 Fraunces Black · caixa alta · tracking fechado · leading 0.88 · clamp até 600px
               </p>
             </div>
             <div className="flex flex-col gap-4">
               <h3 className="font-sans text-2xl font-bold uppercase tracking-tight">
-                Nível 2 — 40–80px
+                Nível 2: 40–80px
               </h3>
               <p className="font-sans text-lg text-muted-foreground">
-                Nível 3 — corpo 16–22px. Inter regular para leitura, contraste com a escala
+                Nível 3: corpo 16–22px. Inter regular para leitura, contraste com a escala
                 monumental da display. Frases longas, legendas e textos de apoio.
               </p>
             </div>
@@ -163,7 +163,7 @@ export default function StoryboardPage() {
             <Button size="sm" variant="link">LINK →</Button>
           </div>
           <p className="font-sans text-sm text-muted-foreground">
-            Vermelho, pequenos, sem sombra/gradiente/brilho — radius 0 ou 8px.
+            Vermelho, pequenos, sem sombra/gradiente/brilho, radius 0 ou 8px.
           </p>
         </section>
 
@@ -203,7 +203,7 @@ export default function StoryboardPage() {
             <h2 id="ilustracoes" className="display-2">Ilustrações autorais</h2>
           </div>
           <p className="font-sans text-sm text-muted-foreground">
-            SVG vetoriais no estilo cartoon retrô / psicodelia — contorno grosso, cores chapadas,
+            SVG vetoriais no estilo cartoon retrô / psicodelia, contorno grosso, cores chapadas,
             sem sombreamento. Cores vivas apenas nas ilustrações, nunca no layout.
           </p>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
@@ -253,7 +253,7 @@ export default function StoryboardPage() {
         {/* Footer */}
         <footer className="border-t border-border pt-8 text-center">
           <p className="font-sans text-sm text-muted-foreground">
-            Identidade provisória — aguardando aprovação do cliente.
+            Identidade provisória, aguardando aprovação do cliente.
           </p>
         </footer>
       </div>

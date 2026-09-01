@@ -4,10 +4,12 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 /**
- * Escala e forma da identidade Trak (Fase A.1): a landing é toda em caixa-alta,
- * tracking largo e canto reto — o botão precisa falar a mesma língua. Alturas
- * de 40/44/56px (contra 28/32/36 do padrão shadcn) para conviverem com a
- * tipografia gigante do Hero e passarem no alvo de toque mobile.
+ * Escala e forma da identidade Trak: caixa-alta e tracking, mas cantos
+ * arredondados. Uma versão anterior usava canto reto com borda de 2px e
+ * alturas de 40/44/56px; ficou pesada demais, o CTA do header lia como um
+ * bloco quadrado e os do Hero brigavam com a headline em vez de acompanhá-la.
+ * As alturas agora são 32/36/40/48px — acima dos 24/28/32/36 do padrão shadcn,
+ * que sumiam ao lado da tipografia gigante, e abaixo do exagero anterior.
  *
  * `hover` inverte para foreground/background — o mesmo "hover exagerado"
  * (RF-11) dos cards de Serviços, que invertem para o vermelho.
@@ -19,7 +21,7 @@ const buttonVariants = cva(
   // `tracking-[0.1em]`) não têm especificidade para desempatar, e quem vence é
   // a ordem do CSS gerado. Era o que apagava a borda do botão `outline` e o que
   // deixava o tracking do tamanho `xs` sem efeito.
-  "group/button inline-flex shrink-0 items-center justify-center rounded-none border-2 font-bold uppercase whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border font-bold uppercase whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
@@ -28,7 +30,7 @@ const buttonVariants = cva(
         // `border-foreground`: o antigo `border-border` (#0f0f0f1a) sobre o
         // papel #F7F4EE era invisível no tema claro (Fase A.2).
         outline:
-          "border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background aria-expanded:bg-foreground aria-expanded:text-background",
+          "border-2 border-foreground bg-transparent text-foreground hover:bg-foreground hover:text-background aria-expanded:bg-foreground aria-expanded:text-background",
         secondary:
           "border-secondary bg-secondary text-secondary-foreground hover:border-foreground hover:bg-foreground hover:text-background aria-expanded:border-secondary aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
         ghost:
@@ -39,14 +41,14 @@ const buttonVariants = cva(
       },
       size: {
         default:
-          "h-11 gap-2 px-5 text-xs tracking-[0.12em] has-data-[icon=inline-end]:pr-4 has-data-[icon=inline-start]:pl-4",
-        xs: "h-8 gap-1.5 px-3 text-[0.6875rem] tracking-[0.1em] has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-10 gap-2 px-4 text-xs tracking-[0.12em] has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3 [&_svg:not([class*='size-'])]:size-3.5",
-        lg: "h-14 gap-2.5 px-7 text-sm tracking-[0.14em] has-data-[icon=inline-end]:pr-5 has-data-[icon=inline-start]:pl-5",
-        icon: "size-11",
+          "h-10 gap-2 px-4 text-xs tracking-[0.1em] has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3",
+        xs: "h-8 gap-1.5 px-2.5 text-[0.6875rem] tracking-[0.08em] has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-9 gap-1.5 px-3.5 text-xs tracking-[0.1em] has-data-[icon=inline-end]:pr-2.5 has-data-[icon=inline-start]:pl-2.5 [&_svg:not([class*='size-'])]:size-3.5",
+        lg: "h-12 gap-2 px-6 text-sm tracking-[0.12em] has-data-[icon=inline-end]:pr-4 has-data-[icon=inline-start]:pl-4",
+        icon: "size-10",
         "icon-xs": "size-8 [&_svg:not([class*='size-'])]:size-3",
-        "icon-sm": "size-10",
-        "icon-lg": "size-14",
+        "icon-sm": "size-9",
+        "icon-lg": "size-12",
       },
     },
     defaultVariants: {

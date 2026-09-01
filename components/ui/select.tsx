@@ -41,8 +41,8 @@ function SelectTrigger({
       data-slot="select-trigger"
       data-size={size}
       className={cn(
-        // Mesmo tratamento do Input (Fase B.5): 48px, canto reto, borda de 2px.
-        "flex w-fit items-center justify-between gap-1.5 rounded-none border-2 border-foreground/30 bg-transparent py-2 pr-3 pl-4 text-sm whitespace-nowrap transition-colors outline-none select-none hover:border-foreground/60 focus-visible:border-foreground focus-visible:ring-3 focus-visible:ring-ring/40 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 data-placeholder:text-muted-foreground data-[size=default]:h-12 data-[size=sm]:h-10 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        // Mesmo tratamento do Input: 48px, borda sólida, canto arredondado.
+        "flex w-fit items-center justify-between gap-1.5 rounded-lg border border-foreground/40 bg-transparent py-2 pr-3 pl-4 text-sm whitespace-nowrap transition-colors outline-none select-none hover:border-foreground/70 focus-visible:border-foreground focus-visible:ring-3 focus-visible:ring-ring/40 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 data-placeholder:text-muted-foreground data-[size=default]:h-12 data-[size=sm]:h-10 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-1.5 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
       )}
       {...props}

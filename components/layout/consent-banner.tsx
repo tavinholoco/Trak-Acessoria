@@ -75,7 +75,7 @@ export function ConsentBanner() {
       >
         <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-4 px-4 py-4 md:flex-row md:items-center md:justify-between md:gap-10 md:px-10">
           <p className="max-w-3xl font-sans text-sm leading-relaxed">
-            Usamos análise anônima — profundidade de rolagem e cliques — para
+            Usamos análise anônima (profundidade de rolagem e cliques) para
             melhorar a página. Seus dados não são vendidos.{" "}
             <a
               href="/privacidade"

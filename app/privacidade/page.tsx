@@ -9,7 +9,7 @@ import { whatsappUrl } from "@/data/site";
 export const metadata: Metadata = {
   title: "Política de Privacidade",
   description:
-    "Política de Privacidade da Trak Assessoria em conformidade com a LGPD — como tratamos os dados pessoais enviados pelo formulário de contato.",
+    "Política de Privacidade da Trak Assessoria em conformidade com a LGPD: como tratamos os dados pessoais enviados pelo formulário de contato.",
 };
 
 /**
@@ -33,7 +33,7 @@ export default function PrivacidadePage() {
           </h1>
           <p className="mt-6 max-w-xl font-sans text-base text-muted-foreground">
             Como a {privacy.controller.name} trata os seus dados pessoais, em
-            conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei nº
+            conformidade com a Lei Geral de Proteção de Dados (LGPD, Lei nº
             13.709/2018).
           </p>
         </header>

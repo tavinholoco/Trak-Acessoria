@@ -18,7 +18,7 @@ export const services: Service[] = [
     index: "02",
     title: "Captação e Editais",
     description:
-      "Identificação de oportunidades, escrita de projetos e acompanhamento de editais e leis de incentivo — do edital à prestação de contas.",
+      "Identificação de oportunidades, escrita de projetos e acompanhamento de editais e leis de incentivo, do edital à prestação de contas.",
     highlights: ["Editais e leis de incentivo", "Escrita de projetos", "Prestação de contas"],
   },
   {
@@ -42,7 +42,7 @@ export const services: Service[] = [
     index: "05",
     title: "Gestão de Projetos",
     description:
-      "Planejamento, orçamento, cronograma e execução de projetos culturais do início ao fim — com foco em resultado e prestação de contas.",
+      "Planejamento, orçamento, cronograma e execução de projetos culturais do início ao fim, com foco em resultado e prestação de contas.",
     highlights: ["Planejamento e orçamento", "Cronograma e execução", "Prestação de contas"],
   },
   {
@@ -50,7 +50,7 @@ export const services: Service[] = [
     index: "06",
     title: "Assessoria Jurídica e Contratos",
     description:
-      "Contratos de venda, consignação, cessão de imagem e formalização do negócio — segurança jurídica para criar sem medo.",
+      "Contratos de venda, consignação, cessão de imagem e formalização do negócio: segurança jurídica para criar sem medo.",
     highlights: ["Contratos de venda", "Consignação e cessão", "Formalização do negócio"],
   },
 ];

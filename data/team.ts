@@ -16,7 +16,7 @@ export const team: TeamMember[] = [
     id: "carlos-lima",
     name: "Carlos Lima",
     role: "Captação de Recursos",
-    bio: "Especialista em editais e leis de incentivo. Já captou mais de R$ 8M para projetos culturais — e conhece cada etapa, da inscrição à prestação de contas.",
+    bio: "Especialista em editais e leis de incentivo. Já captou mais de R$ 8M para projetos culturais, e conhece cada etapa, da inscrição à prestação de contas.",
     focus: ["Editais", "Incentivo"],
   },
   {

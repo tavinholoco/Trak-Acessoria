@@ -36,7 +36,7 @@ export const privacy = {
       id: "introducao",
       title: "1. Quem somos",
       body: [
-        `A ${site.name} é uma assessoria para empresas e profissionais do mercado de arte. Esta política explica como tratamos os dados pessoais de quem visita nosso site ou entra em contato conosco, em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018).`,
+        `A ${site.name} é uma assessoria para empresas e profissionais do mercado de arte. Esta política explica como tratamos os dados pessoais de quem visita nosso site ou entra em contato conosco, em conformidade com a Lei Geral de Proteção de Dados (LGPD, Lei nº 13.709/2018).`,
         "Ao utilizar este site, você concorda com as práticas descritas nesta política. Se não concordar, recomendamos não enviar dados pelo formulário e entrar em contato por outros meios.",
       ],
     },
@@ -45,7 +45,7 @@ export const privacy = {
       title: "2. Dados que coletamos",
       body: [
         "Coletamos apenas os dados que você fornece voluntariamente pelo formulário de contato: nome, e-mail, tipo de empresa e mensagem. Não coletamos dados sensíveis, dados de pagamento ou informações de navegação para fins de perfilamento.",
-        "Esses dados são usados exclusivamente para responder à sua solicitação e iniciar uma conversa comercial — nunca para envio de marketing sem o seu consentimento.",
+        "Esses dados são usados exclusivamente para responder à sua solicitação e iniciar uma conversa comercial, nunca para envio de marketing sem o seu consentimento.",
       ],
     },
     {
@@ -69,7 +69,7 @@ export const privacy = {
       title: "5. Cookies e analytics",
       body: [
         "Este site não utiliza cookies de rastreamento nem ferramentas de análise de audiência sem o seu consentimento prévio. Ferramentas opcionais de medição de audiência (como Plausible ou GA4), quando adotadas, serão ativadas somente após consentimento explícito e de forma anonimizada.",
-        "Para monitorar a performance da página (Core Web Vitals — tempo de carregamento, estabilidade visual e interatividade), o site utiliza o Vercel Speed Insights, serviço da plataforma de hospedagem. Esse serviço coleta métricas anônimas de performance do navegador — sem cookies de rastreamento, sem dados pessoais e sem perfilamento — e dispensa consentimento nos termos do art. 7º, IX, da LGPD (legítimo interesse na qualidade do serviço).",
+        "Para monitorar a performance da página (Core Web Vitals: tempo de carregamento, estabilidade visual e interatividade), o site utiliza o Vercel Speed Insights, serviço da plataforma de hospedagem. Esse serviço coleta métricas anônimas de performance do navegador, sem cookies de rastreamento, sem dados pessoais e sem perfilamento, e dispensa consentimento nos termos do art. 7º, IX, da LGPD (legítimo interesse na qualidade do serviço).",
         "O modo escuro e as preferências de tema são armazenadas localmente no seu navegador (localStorage) e não são enviadas aos nossos servidores.",
       ],
     },
