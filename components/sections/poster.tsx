@@ -8,10 +8,30 @@ interface PosterProps {
   /** Índice editorial do pôster (ex.: "03"). */
   index: string;
   title: string;
-  /** "paper" = fundo de papel quente (textura das seções claras — 3.9). */
-  tone?: "default" | "paper";
+  /**
+   * Fundo do pôster (Fase B.3). Cada tom reescreve os tokens de cor no
+   * próprio <section>, então o conteúdo se re-tematiza sozinho:
+   *
+   * - `default` — o fundo da página
+   * - `paper`   — degrau suave (`--secondary`), textura das seções claras (3.9)
+   * - `invert`  — a paleta do tema oposto: papel no escuro, preto no claro
+   * - `accent`  — o azul #1D3BFF da marca, igual nos dois temas
+   */
+  tone?: "default" | "paper" | "invert" | "accent";
   children: ReactNode;
 }
+
+/**
+ * O `texture-lines` (linhas de papel impresso) entra em todos os tons menos o
+ * azul: sobre um fundo saturado as linhas de 7px viram moiré e leem como
+ * artefato de renderização, não como textura.
+ */
+const toneClass: Record<NonNullable<PosterProps["tone"]>, string> = {
+  default: "texture-lines",
+  paper: "texture-lines bg-secondary",
+  invert: "texture-lines tone-invert",
+  accent: "tone-accent",
+};
 
 /**
  * Wrapper "cartaz" reutilizável (PRD §6 / E: Poster Design).
@@ -23,7 +43,7 @@ export function Poster({ id, index, title, tone = "default", children }: PosterP
     <section
       id={id}
       aria-labelledby={`${id}-titulo`}
-      className={cn("border-t border-border texture-lines", tone === "paper" && "bg-secondary")}
+      className={cn("border-t border-border", toneClass[tone])}
     >
       <div className="mx-auto w-full max-w-[1440px] px-4 py-20 md:px-10 md:py-28">
         <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">

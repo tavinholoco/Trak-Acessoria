@@ -246,6 +246,64 @@
   letter-spacing: -0.02em;
 }
 
+/* ============ BLOCOS DE COR (Fase B.3) ============ */
+
+/*
+ * Cada pôster pode assumir um fundo próprio. O truque é reescrever os tokens
+ * (--background, --foreground, --muted-foreground, --border) no próprio
+ * <section>: como o @theme é `inline`, as utilitárias compilam para
+ * `var(--foreground)` e não para `var(--color-foreground)` — então tudo que
+ * está dentro do bloco se re-tematiza sozinho, sem override caso a caso.
+ *
+ * O fundo do bloco é `--secondary` (e não `--background`) porque os cards de
+ * dentro usam `bg-background`: precisam de um degrau contra a seção.
+ */
+
+/* Bloco invertido: o pôster roda a paleta do tema oposto — papel sobre preto
+   no tema claro, preto sobre papel no escuro. É o que dá ritmo real à rolagem;
+   #0F0F0F contra #1C1C1C era imperceptível. */
+.tone-invert {
+  --background: #0f0f0f;
+  --foreground: #f7f4ee;
+  --secondary: #1c1c1c;
+  --muted-foreground: #a9a295;
+  --border: #f7f4ee1a;
+  --input: #f7f4ee26;
+  background-color: var(--secondary);
+  color: var(--foreground);
+}
+
+.dark .tone-invert {
+  --background: #f7f4ee;
+  --foreground: #0f0f0f;
+  --secondary: #e8e2d6;
+  --muted-foreground: #6b6559;
+  --border: #0f0f0f1a;
+  --input: #0f0f0f26;
+}
+
+/*
+ * Bloco azul: o --accent (#1D3BFF) estava declarado no sistema desde o início
+ * e nunca tinha saído do /storyboard. Idêntico nos dois temas — é uma âncora
+ * fixa no meio da página.
+ *
+ * Os cremes translúcidos foram escolhidos pelo contraste sobre #1D3BFF:
+ *   85% → 4,76:1  (texto normal, AA)
+ *   70% → 3,62:1  (texto grande, AA) — usado no índice do pôster, que em
+ *                  vermelho sobre azul seria ilegível e brigaria de cor.
+ */
+.tone-accent {
+  --background: #1d3bff;
+  --foreground: #f7f4ee;
+  --secondary: #1631d6;
+  --muted-foreground: #f7f4eed9;
+  --primary: #f7f4eeb3;
+  --border: #f7f4ee40;
+  --input: #f7f4ee40;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
 /* ============ TEXTURAS ============ */
 
 /* Grain (granulado) muito leve */
