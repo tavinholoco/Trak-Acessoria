@@ -13,17 +13,11 @@ export function Services() {
         {services.map((service, i) => (
           <Reveal key={service.id} delay={(i % 3) * 80}>
             <article className="group flex h-full flex-col gap-6 bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-primary hover:text-primary-foreground md:p-8">
-              <div className="flex items-start justify-between">
-                <span className="label-mono text-muted-foreground transition-colors group-hover:text-primary-foreground/80">
-                  {service.index}
-                </span>
-                <span
-                  aria-hidden="true"
-                  className="font-display text-lg font-black text-muted-foreground transition-colors group-hover:text-primary-foreground"
-                >
-                  →
-                </span>
-              </div>
+              {/* Sem a seta que ficava aqui: o card não leva a lugar nenhum,
+                  e o "→" prometia uma navegação que não existe. */}
+              <span className="label-mono text-muted-foreground transition-colors group-hover:text-primary-foreground/80">
+                {service.index}
+              </span>
               <h3 className="font-display text-2xl font-black uppercase leading-none tracking-tight">
                 {service.title}
               </h3>

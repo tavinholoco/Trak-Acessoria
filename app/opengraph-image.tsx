@@ -9,7 +9,7 @@ import { site } from "@/data/site";
  * (convenção de arquivo app/opengraph-image.*).
  */
 export const runtime = "edge";
-export const alt = `${site.name} — ${site.tagline}`;
+export const alt = `${site.name} | ${site.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -39,7 +39,7 @@ export default async function OpengraphImage() {
           <span style={{ color: "#D41F16" }}>Negócio.</span>
         </div>
         <div style={{ display: "flex", fontSize: 28, color: "#A9A295" }}>
-          Assessoria para empresas de arte — divulgação, posicionamento e captação de recursos.
+          Assessoria para empresas de arte: divulgação, posicionamento e captação de recursos.
         </div>
       </div>
     ),

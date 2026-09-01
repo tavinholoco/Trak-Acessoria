@@ -10,7 +10,7 @@ export const site = {
   shortName: "Trak",
   tagline: "Arte é negócio.",
   description:
-    "Assessoria para empresas de arte — divulgação, posicionamento e captação de recursos para quem faz cultura acontecer.",
+    "Assessoria para empresas de arte: divulgação, posicionamento e captação de recursos para quem faz cultura acontecer.",
 
   /**
    * URL pública do site — base para canonical, sitemap, robots e OG (RF-12).

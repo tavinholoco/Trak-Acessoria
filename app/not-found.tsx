@@ -21,7 +21,7 @@ export default function NotFound() {
       {/* SVG vetorial autoral (Fase 5.4) */}
       <Image
         src="/art/busto.svg"
-        alt="Ilustração autoral de um busto — identidade Trak"
+        alt="Ilustração autoral de um busto, identidade Trak"
         width={1024}
         height={1024}
         unoptimized

@@ -15,10 +15,12 @@ interface PosterProps {
    *
    * - `default` — o fundo da página
    * - `paper`   — degrau suave (`--secondary`), textura das seções claras (3.9)
-   * - `invert`  — a paleta do tema oposto: papel no escuro, preto no claro
    * - `accent`  — o azul #1D3BFF da marca, igual nos dois temas
+   *
+   * Não existe tom que inverta a paleta: o tema escuro é escuro na página
+   * inteira, e o ritmo vem da cor da marca (ver globals.css).
    */
-  tone?: "default" | "paper" | "invert" | "accent";
+  tone?: "default" | "paper" | "accent";
   children: ReactNode;
 }
 
@@ -30,7 +32,6 @@ interface PosterProps {
 const toneClass: Record<NonNullable<PosterProps["tone"]>, string> = {
   default: "texture-lines",
   paper: "texture-lines bg-secondary",
-  invert: "texture-lines tone-invert",
   accent: "tone-accent",
 };
 
@@ -42,7 +43,6 @@ const toneClass: Record<NonNullable<PosterProps["tone"]>, string> = {
 const toneTokens: Record<NonNullable<PosterProps["tone"]>, string> = {
   default: "",
   paper: "",
-  invert: "tone-invert-tokens",
   accent: "tone-accent-tokens",
 };
 
@@ -60,12 +60,15 @@ export function Poster({ id, index, title, tone = "default", children }: PosterP
     >
       <div className="mx-auto w-full max-w-[1440px] px-4 py-20 md:px-10 md:py-28">
         <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
-          {/* Índice em mono (Fase B.1): o contraste de peso e de família
-              contra o título em Fraunces 900 é a hierarquia — o número marca,
-              o título fala. Vermelho em texto grande (AA 3:1 — PRD §9.3).
-              O `data-slot` deixa o tom azul dar a ele um creme próprio sem
-              precisar sequestrar o --primary da seção inteira. */}
-          <span data-slot="poster-index" className="index-mono text-primary">
+          {/* Índice em Fraunces, na mesma família do título: em mono ele
+              perdia peso ao lado do display e a dupla ficava desequilibrada.
+              Vermelho em texto grande (AA 3:1 — PRD §9.3). O `data-slot` deixa
+              o tom azul dar a ele um creme próprio sem precisar sequestrar o
+              --primary da seção inteira. */}
+          <span
+            data-slot="poster-index"
+            className="font-display text-5xl font-black leading-none text-primary md:text-7xl"
+          >
             {index}
           </span>
           <h2 id={`${id}-titulo`} className="display-2">

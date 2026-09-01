@@ -8,11 +8,15 @@ import { cn } from "@/lib/utils";
  * Ilustrações autorais do banner (Fase 3.8) — SVGs em public/art/.
  *
  * Fase B.4: cada peça carrega sua posição na colagem. Antes eram oito ícones
- * de 80px espalhados numa fileira regular de 1360px — o comentário prometia
- * "colagem psicodélica" e o que saía era uma linha de ícones. Agora as artes
- * vão de 176px a 384px, rotacionadas, sobrepostas por margem negativa e
- * desalinhadas na vertical; a fileira é mais larga que a tela e sangra nas
- * duas bordas (o <section> tem overflow-hidden).
+ * de 80px espalhados numa fileira regular de 1360px. Agora as artes vão de
+ * 176px a 384px, rotacionadas, sobrepostas por margem negativa e desalinhadas
+ * na vertical; a fileira é mais larga que a tela e sangra nas duas bordas (o
+ * <section> tem overflow-hidden).
+ *
+ * Os deslocamentos verticais são todos para baixo, de propósito: com valores
+ * negativos as figuras subiam por cima do título e do parágrafo da seção. Como
+ * `transform` não ocupa espaço no layout, o respiro tem que vir do padding da
+ * fileira, não do fluxo.
  *
  * As classes são literais de propósito: o Tailwind precisa vê-las inteiras
  * no fonte para gerá-las.
@@ -20,43 +24,43 @@ import { cn } from "@/lib/utils";
 const bannerArt = [
   {
     src: "/art/megafone.svg",
-    alt: "Megafone — divulgação",
+    alt: "Megafone, divulgação",
     pos: "w-36 -rotate-12 md:w-80",
   },
   {
     src: "/art/moeda.svg",
-    alt: "Moeda — recursos",
-    pos: "-ml-8 w-28 translate-y-8 rotate-6 md:-ml-24 md:w-68 md:translate-y-16",
+    alt: "Moeda, recursos",
+    pos: "-ml-8 w-28 translate-y-5 rotate-6 md:-ml-24 md:w-68 md:translate-y-10",
   },
   {
     src: "/art/paleta.svg",
-    alt: "Paleta — arte",
-    pos: "-ml-8 w-44 -translate-y-6 rotate-3 md:-ml-24 md:w-96 md:-translate-y-12",
+    alt: "Paleta, arte",
+    pos: "-ml-8 w-44 translate-y-1 rotate-3 md:-ml-24 md:w-96 md:translate-y-2",
   },
   {
     src: "/art/sol.svg",
-    alt: "Sol — psicodelia",
-    pos: "-ml-8 w-32 translate-y-5 -rotate-6 md:-ml-24 md:w-76 md:translate-y-10",
+    alt: "Sol, psicodelia",
+    pos: "-ml-8 w-32 translate-y-4 -rotate-6 md:-ml-24 md:w-76 md:translate-y-8",
   },
   {
     src: "/art/flor.svg",
-    alt: "Flor — orgânico",
-    pos: "-ml-8 w-40 -translate-y-7 rotate-12 md:-ml-24 md:w-84 md:-translate-y-14",
+    alt: "Flor, orgânico",
+    pos: "-ml-8 w-40 rotate-12 md:-ml-24 md:w-84 md:translate-y-1",
   },
   {
     src: "/art/busto.svg",
-    alt: "Busto — irreverência",
-    pos: "-ml-8 w-28 translate-y-6 -rotate-3 md:-ml-24 md:w-68 md:translate-y-12",
+    alt: "Busto, irreverência",
+    pos: "-ml-8 w-28 translate-y-5 -rotate-3 md:-ml-24 md:w-68 md:translate-y-10",
   },
   {
     src: "/art/estrela.svg",
-    alt: "Estrela — brilho",
-    pos: "-ml-8 w-32 -translate-y-4 rotate-6 md:-ml-24 md:w-72 md:-translate-y-8",
+    alt: "Estrela, brilho",
+    pos: "-ml-8 w-32 translate-y-2 rotate-6 md:-ml-24 md:w-72 md:translate-y-4",
   },
   {
     src: "/art/vinil.svg",
-    alt: "Vinil — cultura",
-    pos: "-ml-8 w-40 translate-y-7 -rotate-12 md:-ml-24 md:w-88 md:translate-y-14",
+    alt: "Vinil, cultura",
+    pos: "-ml-8 w-40 translate-y-4 -rotate-12 md:-ml-24 md:w-88 md:translate-y-9",
   },
 ];
 
@@ -100,11 +104,11 @@ export function Marquee() {
         className="relative overflow-hidden border-b border-border bg-secondary texture-lines texture-grain"
       >
         <div className="mx-auto w-full max-w-[1440px] px-4 pt-14 md:px-10 md:pt-20">
-          <h2 id="banner-titulo" className="display-2">
+          <h2 className="font-display text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl" id="banner-titulo">
             {bannerHeadline}
           </h2>
           <p className="mt-4 max-w-md font-sans text-sm text-muted-foreground">
-            Assessoria para quem faz cultura acontecer — do ateliê ao acervo.
+            Assessoria para quem faz cultura acontecer, do ateliê ao acervo.
           </p>
         </div>
 
@@ -113,8 +117,8 @@ export function Marquee() {
             a colagem contra a rolagem — respeita prefers-reduced-motion e usa
             um único listener com rAF. */}
         <Parallax
-          speed={36}
-          className="flex w-full items-center justify-center pt-6 pb-14 md:pt-4 md:pb-20"
+          speed={22}
+          className="flex w-full items-center justify-center pt-10 pb-14 md:pt-14 md:pb-20"
         >
           {bannerArt.map((art) => (
             <figure

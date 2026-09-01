@@ -101,9 +101,9 @@
   /* Mesmo ajuste de contraste AA (ver :root). */
   --primary: #d41f16;
   --primary-foreground: #f7f4ee;
-  --secondary: #1c1c1c;
+  --secondary: #242424;
   --secondary-foreground: #f7f4ee;
-  --muted: #1c1c1c;
+  --muted: #242424;
   --muted-foreground: #a9a295;
   --accent: #1d3bff;
   --accent-foreground: #f7f4ee;
@@ -120,7 +120,7 @@
   --sidebar-foreground: #f7f4ee;
   --sidebar-primary: #e1261c;
   --sidebar-primary-foreground: #f7f4ee;
-  --sidebar-accent: #1c1c1c;
+  --sidebar-accent: #242424;
   --sidebar-accent-foreground: #f7f4ee;
   --sidebar-border: #f7f4ee1a;
   --sidebar-ring: #e1261c;
@@ -192,11 +192,21 @@
   font-size: clamp(2rem, 11vw, 10rem); /* 32px → 160px */
 }
 
-/* Headline do Hero (Fase 3.1): mesma identidade do display-1, porém com
-   escala que cabe na dobra. Mobile/tablet: 16vw (teto 224px — tamanho
-   aprovado). Desktop (lg+): escala proporcional a LARGURA E ALTURA da tela
-   (min(22vw, 30dvh), teto 416px) para preencher a tela sem cortar
-   "NEGÓCIO." nem deixar vazio excessivo abaixo do Hero. */
+/*
+ * Headline do Hero (Fase 3.1): mesma identidade do display-1, com escala que
+ * cabe na dobra. Mobile/tablet: 16vw (teto 224px).
+ *
+ * Desktop (lg+): o 22vw anterior olhava só para a viewport e ignorava a
+ * restrição que de fato manda aqui — a largura do próprio texto. "NEGÓCIO."
+ * mede 5,116em, e o container tem 100vw menos 5rem (o px-10 dos dois lados),
+ * então qualquer corpo acima de (100vw - 5rem) / 5,116 estoura a linha. Como o
+ * <main> tem overflow-hidden, isso não virava barra de rolagem: decepava a
+ * última letra em silêncio. Media 212px de corte numa tela retrato de 1050px e
+ * 21px até em 1440x900.
+ *
+ * O divisor 5.2 deixa uma folga pequena sobre os 5,116em medidos. O 30dvh
+ * continua limitando em telas baixas e largas, onde ele é quem manda.
+ */
 @utility display-hero {
   font-family: var(--font-fraunces);
   font-weight: 900;
@@ -206,7 +216,7 @@
   font-size: clamp(3rem, 16vw, 14rem); /* 48px → 224px */
 
   @media (min-width: 1024px) {
-    font-size: clamp(3rem, min(22vw, 30dvh), 26rem); /* 48px → 416px */
+    font-size: clamp(3rem, min(calc((100vw - 5rem) / 5.2), 30dvh), 26rem);
   }
 }
 
@@ -266,6 +276,13 @@
  * O fundo do bloco é `--secondary` (e não `--background`) porque os cards de
  * dentro usam `bg-background`: precisam de um degrau contra a seção.
  *
+ * O tema escuro é escuro em toda a página: nenhum tom inverte a paleta. As
+ * seções neutras se distinguem por um degrau discreto (--background contra
+ * --secondary) e o ritmo forte vem da cor da marca — o azul da Equipe, a faixa
+ * e a barra em vermelho. Uma versão anterior invertia Projetos e Contato para
+ * creme no escuro: duas de sete seções ficavam mais claras que a faixa
+ * vermelha, o que lê como troca de tema no meio da rolagem, não como bloco.
+ *
  * Cada tom vem em duas classes:
  *
  *   `.tone-*`         — os tokens + a pintura do bloco (fundo e cor do texto)
@@ -277,38 +294,6 @@
  * quase preto sobre o bloco creme do Contato. Aplicando `-tokens` no popup ele
  * recebe a paleta do bloco sem herdar o fundo dele (continua usando --popover).
  */
-
-.tone-invert,
-.tone-invert-tokens {
-  --background: #0f0f0f;
-  --foreground: #f7f4ee;
-  --secondary: #1c1c1c;
-  --muted-foreground: #a9a295;
-  --border: #f7f4ee1a;
-  --input: #f7f4ee26;
-  --popover: #161616;
-  --popover-foreground: #f7f4ee;
-}
-
-.dark .tone-invert,
-.dark .tone-invert-tokens {
-  --background: #f7f4ee;
-  --foreground: #0f0f0f;
-  --secondary: #e8e2d6;
-  --muted-foreground: #6b6559;
-  --border: #0f0f0f1a;
-  --input: #0f0f0f26;
-  --popover: #f7f4ee;
-  --popover-foreground: #0f0f0f;
-}
-
-/* Bloco invertido: o pôster roda a paleta do tema oposto — papel sobre preto
-   no tema claro, preto sobre papel no escuro. É o que dá ritmo real à rolagem;
-   #0F0F0F contra #1C1C1C era imperceptível. */
-.tone-invert {
-  background-color: var(--secondary);
-  color: var(--foreground);
-}
 
 /*
  * Bloco azul: o --accent (#1D3BFF) estava declarado no sistema desde o início

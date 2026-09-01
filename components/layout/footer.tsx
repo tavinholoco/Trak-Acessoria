@@ -84,7 +84,7 @@ export function Footer() {
         {/* Créditos */}
         <div className="mt-14 flex flex-col gap-2 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-sans text-xs text-muted-foreground">
-            © {year} {site.name}. Projeto de portfólio — dados fictícios.
+            © {year} {site.name}. Projeto de portfólio, dados fictícios.
           </p>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
             {/* Política de Privacidade — LGPD (RNF-08 / Fase 5.6) */}

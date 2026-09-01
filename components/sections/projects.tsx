@@ -10,7 +10,7 @@ import { projects } from "@/data/projects";
  */
 export function Projects() {
   return (
-    <Poster id="projetos" index="04" title="Projetos" tone="invert">
+    <Poster id="projetos" index="04" title="Projetos" tone="paper">
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {projects.map((project, i) => (
           <Reveal key={project.id} delay={(i % 4) * 80}>
