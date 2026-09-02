@@ -154,7 +154,7 @@ componente.
 
 | Ferramenta | Versão | Como verificar |
 | --- | --- | --- |
-| Node.js | 22, a versão que o CI roda | `node --version` |
+| Node.js | 22 ou mais recente, declarado em `engines` | `node --version` |
 | npm | 10 ou mais recente, vem com o Node | `npm --version` |
 
 ### Instalação
@@ -184,7 +184,6 @@ nunca deve ser commitado.
 | `NEXT_PUBLIC_ANALYTICS` | Use `plausible` para ativar o analytics, condicionado ao consentimento LGPD | Não |
 | `NEXT_PUBLIC_ANALYTICS_DOMAIN` | Domínio cadastrado no provider de analytics | Não |
 | `NEXT_PUBLIC_ANALYTICS_SCRIPT_URL` | URL do script do provider, para Plausible self-hosted | Não |
-| `WHATSAPP` | Está no `.env.example` mas não é lida pela aplicação. O número fica em `data/site.ts` | Não |
 
 ## Scripts
 
@@ -194,14 +193,13 @@ nunca deve ser commitado.
 | `npm run build` | Build de produção |
 | `npm run start` | Serve a build de produção |
 | `npm run lint` | ESLint |
+| `npm run typecheck` | Checagem de tipos, sem emitir arquivos |
 | `npm test` | Testes unitários e de componente em watch mode |
 | `npm run test:run` | Testes unitários e de componente, uma execução |
 | `npm run test:coverage` | Testes mais relatório de cobertura, com o gate de limites |
 | `npm run test:e2e` | Suíte Playwright nos quatro alvos de navegador |
 | `npm run test:e2e:ui` | Playwright em UI mode, para debug interativo |
 | `npm run test:e2e:report` | Abre o relatório HTML da última execução |
-
-O typecheck não é script do pacote. O CI roda como `npx tsc --noEmit`.
 
 ## Testes
 
@@ -229,7 +227,7 @@ A cobertura tem gate no `vitest.config.mts` em 80% de statements, 70% de branche
 de functions e 85% de lines. A verificação completa antes de abrir um pull request:
 
 ```bash
-npm run lint && npx tsc --noEmit && npm run test:run && npm run test:coverage
+npm run lint && npm run typecheck && npm run test:run && npm run test:coverage
 ```
 
 ## Deploy
@@ -237,7 +235,7 @@ npm run lint && npx tsc --noEmit && npm run test:run && npm run test:coverage
 O CI roda a cada push em `main` ou `master` e em todo pull request, definido em
 [`.github/workflows/ci.yml`](.github/workflows/ci.yml):
 
-- **quality:** `npm ci`, `npm run lint`, `npx tsc --noEmit`, `npm run test:run`,
+- **quality:** `npm ci`, `npm run lint`, `npm run typecheck`, `npm run test:run`,
   `npm run test:coverage`
 - **e2e:** `npm ci`, instala Chromium, Firefox e WebKit, depois `npx playwright test`,
   subindo o relatório HTML do Playwright como artefato quando o job falha

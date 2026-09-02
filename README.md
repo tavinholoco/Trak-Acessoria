@@ -156,7 +156,7 @@ never a component.
 
 | Tool | Version | Check with |
 | --- | --- | --- |
-| Node.js | 22, the version CI runs | `node --version` |
+| Node.js | 22 or newer, declared in `engines` | `node --version` |
 | npm | 10 or newer, ships with Node | `npm --version` |
 
 ### Installation
@@ -186,7 +186,6 @@ never be committed.
 | `NEXT_PUBLIC_ANALYTICS` | Set to `plausible` to enable analytics, gated by LGPD consent | No |
 | `NEXT_PUBLIC_ANALYTICS_DOMAIN` | Domain registered with the analytics provider | No |
 | `NEXT_PUBLIC_ANALYTICS_SCRIPT_URL` | Provider script URL, for self-hosted Plausible | No |
-| `WHATSAPP` | Listed in `.env.example` but not read by the app. The number lives in `data/site.ts` | No |
 
 ## Scripts
 
@@ -196,14 +195,13 @@ never be committed.
 | `npm run build` | Production build |
 | `npm run start` | Serves the production build |
 | `npm run lint` | ESLint |
+| `npm run typecheck` | TypeScript check, no emit |
 | `npm test` | Unit and component tests in watch mode |
 | `npm run test:run` | Unit and component tests, single run |
 | `npm run test:coverage` | Tests plus coverage report, with the threshold gate |
 | `npm run test:e2e` | Playwright suite across four browser targets |
 | `npm run test:e2e:ui` | Playwright UI mode for interactive debugging |
 | `npm run test:e2e:report` | Opens the HTML report of the last run |
-
-Typechecking is not a package script. CI runs it as `npx tsc --noEmit`.
 
 ## Tests
 
@@ -231,7 +229,7 @@ Coverage is gated in `vitest.config.mts` at 80% statements, 70% branches, 80% fu
 and 85% lines. The full check before opening a pull request:
 
 ```bash
-npm run lint && npx tsc --noEmit && npm run test:run && npm run test:coverage
+npm run lint && npm run typecheck && npm run test:run && npm run test:coverage
 ```
 
 ## Deploy
@@ -239,7 +237,7 @@ npm run lint && npx tsc --noEmit && npm run test:run && npm run test:coverage
 CI runs on every push to `main` or `master` and on every pull request, defined in
 [`.github/workflows/ci.yml`](.github/workflows/ci.yml):
 
-- **quality:** `npm ci`, `npm run lint`, `npx tsc --noEmit`, `npm run test:run`,
+- **quality:** `npm ci`, `npm run lint`, `npm run typecheck`, `npm run test:run`,
   `npm run test:coverage`
 - **e2e:** `npm ci`, installs Chromium, Firefox and WebKit, then `npx playwright test`,
   uploading the Playwright HTML report as an artifact when the job fails
