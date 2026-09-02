@@ -15,7 +15,7 @@
 - [ ] **Vercel → Add New → Project → Import Git Repository** → escolher `Trak-Acessoria`.
 - [ ] Framework: **Next.js** (auto-detectado). Build command: `npm run build` (padrão).
 - [ ] **Sem domínio próprio** (decisão do PRD §6.3): manter a URL padrão da Vercel
-      (ex.: `https://trak-assessoria.vercel.app`).
+      (ex.: `https://trak-acessoria.vercel.app`).
 - [ ] No painel do projeto: **Settings → Environment Variables** — adicionar no ambiente
       `Production` (e `Preview` se quiser testar em staging):
 
@@ -25,7 +25,7 @@
 | `WHATSAPP` | `5511999990000` | Obrigatória |
 | `RESEND_API_KEY` | chave real da conta Resend | **Obrigatória** — segredo, nunca no git |
 | `RESEND_FROM` | `Trak Assessoria <onboarding@resend.dev>` | Opcional (ou e-mail verificado) |
-| `NEXT_PUBLIC_SITE_URL` | `https://trak-assessoria.vercel.app` (URL final) | Obrigatória p/ canonical/sitemap/OG |
+| `NEXT_PUBLIC_SITE_URL` | `https://trak-acessoria.vercel.app` (URL final) | Obrigatória p/ canonical/sitemap/OG |
 | `NEXT_PUBLIC_ANALYTICS` | `plausible` | Opcional — só se quiser medir KPIs §3.2 |
 | `NEXT_PUBLIC_ANALYTICS_DOMAIN` | mesmo domínio da URL final | Opcional — junto do analytics |
 

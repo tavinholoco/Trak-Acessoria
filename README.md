@@ -1,8 +1,8 @@
-# Trak-Acessoria
+# Trak Assessoria
 
 One-page landing site for an art-market consultancy, built with Next.js 16 and the App Router.
 
-[![CI](https://github.com/tavinholoco/Trak-Acessoria/actions/workflows/ci.yml/badge.svg)](https://github.com/tavinholoco/Trak-Acessoria/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/tavinholoco/Trak-Acessoria/ci.yml?branch=master&style=for-the-badge&label=CI)](https://github.com/tavinholoco/Trak-Acessoria/actions/workflows/ci.yml)
 ![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
 ![Next.js](https://img.shields.io/badge/Next.js-16.2-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![React](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)
@@ -11,11 +11,11 @@ One-page landing site for an art-market consultancy, built with Next.js 16 and t
 
 **English** | [Português](README.pt-BR.md)
 
-**Live site:** https://trak-assessoria.vercel.app
+[Live demo](https://trak-acessoria.vercel.app) · [Product spec](PRD.md)
 
 ## Table of Contents
 
-- [Preview](#preview)
+- [Screenshots](#screenshots)
 - [About](#about)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
@@ -29,7 +29,7 @@ One-page landing site for an art-market consultancy, built with Next.js 16 and t
 - [License](#license)
 - [Author](#author)
 
-## Preview
+## Screenshots
 
 | Dark theme (default) | Light theme |
 | --- | --- |
@@ -166,11 +166,7 @@ git clone https://github.com/tavinholoco/Trak-Acessoria.git
 cd Trak-Acessoria
 npm install
 cp .env.example .env.local
-npm run dev
 ```
-
-The site is served at http://localhost:3000. The component gallery is at
-http://localhost:3000/storyboard in development.
 
 ### Environment variables
 
@@ -186,6 +182,15 @@ never be committed.
 | `NEXT_PUBLIC_ANALYTICS` | Set to `plausible` to enable analytics, gated by LGPD consent | No |
 | `NEXT_PUBLIC_ANALYTICS_DOMAIN` | Domain registered with the analytics provider | No |
 | `NEXT_PUBLIC_ANALYTICS_SCRIPT_URL` | Provider script URL, for self-hosted Plausible | No |
+
+### Running
+
+```bash
+npm run dev
+```
+
+The site is served at http://localhost:3000. The component gallery is at
+http://localhost:3000/storyboard in development.
 
 ## Scripts
 
@@ -242,7 +247,7 @@ CI runs on every push to `main` or `master` and on every pull request, defined i
 - **e2e:** `npm ci`, installs Chromium, Firefox and WebKit, then `npx playwright test`,
   uploading the Playwright HTML report as an artifact when the job fails
 
-The site is hosted on Vercel at https://trak-assessoria.vercel.app. Next.js is detected
+The site is hosted on Vercel at https://trak-acessoria.vercel.app. Next.js is detected
 automatically, so the default build command applies. The environment variables above have
 to be set for Production and Preview in the project settings. The full release checklist
 is in [`FASE-6.md`](FASE-6.md).
@@ -267,6 +272,6 @@ Distributed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ## Author
 
-**Pedro Levi Dias**, Fullstack Developer
+**Pedro Levi Dias** — Fullstack Developer
 
 [GitHub](https://github.com/tavinholoco) · [LinkedIn](https://www.linkedin.com/in/pedro-levi-dias-96720126a/) · [Portfolio](https://portfolio-tau-five-f86nc5khr8.vercel.app/)
