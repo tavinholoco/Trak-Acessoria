@@ -1,298 +1,272 @@
-# 🎨 Trak Assessoria — Landing Page
+# Trak-Acessoria
 
-Landing page institucional **one-page** da **Trak Assessoria**, assessoria/consultoria para empresas e
-profissionais do mercado de arte — galerias, ateliês, estúdios, produtoras culturais, curadores e
-artistas que se organizam como negócio.
+One-page landing site for an art-market consultancy, built with Next.js 16 and the App Router.
 
-> 💼 **Projeto pessoal de portfólio:** nome, e-mail e WhatsApp são fictícios (dados de demonstração).
-> Especificação completa no [`PRD.md`](PRD.md).
+[![CI](https://github.com/tavinholoco/Trak-Acessoria/actions/workflows/ci.yml/badge.svg)](https://github.com/tavinholoco/Trak-Acessoria/actions/workflows/ci.yml)
+![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
+![Next.js](https://img.shields.io/badge/Next.js-16.2-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.3-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=black)
 
----
+**English** | [Português](README.pt-BR.md)
 
-## 🛠️ Stack & Tecnologias
+**Live site:** https://trak-assessoria.vercel.app
 
-| Categoria | Tecnologias |
-|---|---|
-| **Framework** | ![Next.js 16](https://img.shields.io/badge/Next.js%2016-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) ![React 19](https://img.shields.io/badge/React%2019-61DAFB?style=for-the-badge&logo=react&logoColor=black) |
-| **Linguagem** | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) |
-| **Estilo & UI** | ![Tailwind CSS v4](https://img.shields.io/badge/Tailwind%20CSS%20v4-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=black) ![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcnui&logoColor=white) ![Base UI](https://img.shields.io/badge/Base%20UI-4F46E5?style=for-the-badge) ![Lucide](https://img.shields.io/badge/Lucide-FF5C00?style=for-the-badge&logo=lucide&logoColor=white) |
-| **Tema & Animações** | ![next-themes](https://img.shields.io/badge/next--themes-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) ![tw-animate-css](https://img.shields.io/badge/tw--animate--css-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=black) |
-| **Formulário** | ![react-hook-form](https://img.shields.io/badge/react--hook--form-EC5990?style=for-the-badge&logo=reacthookform&logoColor=white) ![Zod](https://img.shields.io/badge/Zod-3E67B1?style=for-the-badge&logo=zod&logoColor=white) ![Resend](https://img.shields.io/badge/Resend-000000?style=for-the-badge&logo=resend&logoColor=white) ![sonner](https://img.shields.io/badge/sonner-F97316?style=for-the-badge) |
-| **Testes (unit/componente)** | ![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white) ![Testing Library](https://img.shields.io/badge/Testing%20Library-E33332?style=for-the-badge&logo=testinglibrary&logoColor=white) ![jsdom](https://img.shields.io/badge/jsdom-323330?style=for-the-badge) |
-| **Testes (E2E)** | ![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white) ![axe-core](https://img.shields.io/badge/axe--core-0E7AC4?style=for-the-badge) |
-| **Qualidade** | ![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white) ![Vercel Speed Insights](https://img.shields.io/badge/Speed%20Insights-000000?style=for-the-badge&logo=vercel&logoColor=white) |
-| **CI/CD & Deploy** | ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white) ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white) |
+## Table of Contents
 
-### Detalhamento das tecnologias
+- [Preview](#preview)
+- [About](#about)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Architecture](#architecture)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Scripts](#scripts)
+- [Tests](#tests)
+- [Deploy](#deploy)
+- [Roadmap](#roadmap)
+- [License](#license)
+- [Author](#author)
 
-| Camada | Tecnologia | Papel no projeto |
-|---|---|---|
-| Framework | **Next.js 16** (App Router) | SSR/SSG, rotas, API Routes, otimização de imagens e fontes |
-| UI | **React 19** | Renderização de componentes |
-| Linguagem | **TypeScript** (strict) | Tipagem estática — sem `any` |
-| Estilo | **Tailwind CSS v4** + `@tailwindcss/postcss` | Design system utilitário, tokens CSS |
-| UI Kit | **shadcn/ui** (v4, via CLI) | Componentes primitivos (`components/ui/*`) |
-| Primitivas | **@base-ui/react** | Componentes headless de acessibilidade usados pelo shadcn |
-| Icons | **lucide-react** | Ícones (uso mínimo — identidade tipográfica) |
-| Utilitários CSS | **class-variance-authority**, **clsx**, **tailwind-merge** | `cn()` em `lib/utils.ts` |
-| Animações | **tw-animate-css** + CSS/IntersectionObserver | Transições leves sem lib pesada |
-| Tipografia | **Fraunces** (display) + **Inter** (corpo) + **IBM Plex Mono** (labels e dados) via `next/font` | Três papéis tipográficos, self-hosted e sem layout shift |
-| Tema | **next-themes** | Dark mode persistido (preto `#0F0F0F` default) |
-| Formulário | **react-hook-form** + **@hookform/resolvers** + **Zod** | Validação client + server |
-| Toasts | **sonner** | Feedback do envio do formulário |
-| E-mail | **Resend** | Envio dos contatos via API Route |
-| Observabilidade | **@vercel/speed-insights** | Core Web Vitals anônimos em produção |
-| Testes unitários | **Vitest 4** + **jsdom** + **@vitest/coverage-v8** | Lógica pura, hooks, schemas, API |
-| Testes de componente | **Testing Library** + **jest-dom** + **user-event** | Comportamento e a11y dos componentes |
-| Testes E2E | **Playwright** + **@axe-core/playwright** | 3 navegadores + mobile 375px, auditoria WCAG AA |
-| Lint | **ESLint 9** + `eslint-config-next` | Qualidade de código |
-| CI | **GitHub Actions** | lint → typecheck → vitest → coverage → Playwright |
-| Deploy | **Vercel** | Hospedagem (URL padrão, sem domínio próprio) |
+## Preview
 
----
+| Dark theme (default) | Light theme |
+| --- | --- |
+| ![Hero section in dark theme, headline in cream and red over near-black](docs/assets/hero-dark.png) | ![The same hero section in light theme, black and red type over off-white](docs/assets/hero-light.png) |
 
-## ✨ Funcionalidades
+![Projects section: four case cards, each with an illustration, a client label and a highlighted metric](docs/assets/projects-dark.png)
 
-- **Página única** com navegação por âncoras: Início · Serviços · Projetos · Equipe · Contato.
-- **Seções em bloco-pôster** numeradas de 03 a 07: grid de 6 serviços, cases com métricas, equipe
-  editorial, dúvidas em accordion e contato. Antes delas, o Hero gigante, o marquee infinito e um
-  banner com as ilustrações autorais em colagem sangrando nas bordas.
-- **Formulário de contato** funcional com validação Zod (client + server), envio via **Resend**
-  e feedback com **sonner**.
-- **Botão de WhatsApp** como canal reserva.
-- **Dark mode** alternável e persistido (identidade brutalista com preto `#0F0F0F`). O tema escuro é
-  escuro na página inteira: as seções neutras variam por um degrau discreto e o ritmo vem da cor da
-  marca — o bloco azul `#1D3BFF` da Equipe, a faixa e a barra de consentimento em vermelho.
-- **Animações** com respeito a `prefers-reduced-motion`: marquee, parallax leve, hover exagerado, reveal on scroll.
-- **SEO técnico**: metadados, Open Graph/Twitter, `sitemap.xml`, `robots.txt` e dados estruturados JSON-LD.
-- **Acessibilidade WCAG AA**: navegação por teclado, contraste AA, `@axe-core` no E2E.
-- **LGPD**: Política de Privacidade em `/privacidade` + banner de consentimento de analytics.
-- **404 estilizado** como pôster da marca.
-- **Conteúdo editável** em `data/*` — sem tocar em componentes.
+![Team section on a full-bleed blue block, listing four members with role, bio and tags](docs/assets/team-dark.png)
 
----
+## About
 
-## 📁 Estrutura do projeto
+Art businesses (galleries, studios, cultural producers, curators and artists who run
+themselves as a company) rarely lack talent. What they lack is commercial structure:
+someone to position the brand, run the outreach and win public funding calls. Trak
+Assessoria is the consultancy that sells exactly that, and this repository is its
+landing page.
+
+The page has one job: turn a visitor into a conversation. Everything sits on a single
+scroll, split into numbered poster blocks (services, cases with metrics, team, FAQ and
+contact), so a lead can read the whole offer top to bottom and reach the form without
+ever changing pages. The contact form validates in the browser and again on the server,
+sends through Resend, and falls back to WhatsApp when email is not an option.
+
+The visual language is deliberately editorial and loud: oversized Fraunces display type,
+an infinite marquee, color blocking per section and hand-drawn SVG illustrations. That
+looseness is held in check by the engineering around it, with strict TypeScript, a
+coverage gate, WCAG AA audits inside the end-to-end suite and a CSP declared in
+`next.config.ts`.
+
+This is a personal portfolio project. The company, its people, the metrics, the email
+address and the phone number are all fictional demo data. The full product specification
+lives in [`PRD.md`](PRD.md).
+
+## Features
+
+- One-page navigation by anchors: Início, Serviços, Projetos, Equipe, Contato.
+- Numbered poster sections (03 to 07): a six-service grid, cases with headline metrics,
+  an editorial team list, an FAQ accordion and the contact block.
+- Contact form with Zod validation on both the client and the server, delivery through
+  Resend, per-IP rate limiting and toast feedback.
+- WhatsApp button as a fallback channel, opening with a prefilled message.
+- Dark mode as the default, persisted across visits, with the whole page kept dark:
+  neutral sections shift by one discreet step and the rhythm comes from the brand color.
+- Motion that respects `prefers-reduced-motion`: marquee, light parallax, exaggerated
+  hover states and reveal on scroll.
+- Technical SEO: metadata, Open Graph and Twitter cards, generated `sitemap.xml` and
+  `robots.txt`, plus JSON-LD structured data (Organization and ProfessionalService).
+- WCAG AA accessibility: keyboard navigation, AA contrast and axe-core audits running in
+  the E2E suite across four browser targets.
+- LGPD compliance: a privacy policy at `/privacidade` and a consent bar that gates
+  analytics until the visitor accepts.
+- Security headers declared in `next.config.ts`: CSP with an explicit allowlist, plus
+  `X-Frame-Options`, `Referrer-Policy` and `Permissions-Policy`.
+- Styled 404 page rendered as a brand poster.
+- All copy isolated in `data/*`, so a content change never touches a component.
+
+## Tech Stack
+
+| Layer | Technologies |
+| --- | --- |
+| Frontend | Next.js 16.2 (App Router), React 19.2, TypeScript 5.9 (strict), Tailwind CSS 4.3, shadcn/ui, Base UI 1.6, lucide-react 1.28, next-themes 0.4 |
+| Backend | Next.js Route Handler (`POST /api/contact`), Zod 4.4, in-memory IP rate limiting, Resend 6.18 |
+| Content | Typed modules in `data/*`, no CMS and no database |
+| Quality | Vitest 4.1, Testing Library, jsdom 29, Playwright 1.62, axe-core 4.12, ESLint 9.39 |
+| Infra | Vercel, GitHub Actions, Vercel Speed Insights 2.0 |
+
+## Architecture
+
+```mermaid
+flowchart LR
+    V["Visitor"] --> P["Next.js App Router"]
+    D["data/*"] --> P
+    P --> F["Contact form: RHF + Zod"]
+    F --> A["POST /api/contact"]
+    A --> L["IP rate limit"]
+    A --> Z["Zod server validation"]
+    Z --> R["Resend"]
+    R --> M["CONTACT_EMAIL inbox"]
+    V --> W["WhatsApp fallback"]
+```
+
+The page itself is static: every section is a server component that reads typed content
+from `data/*`, so nothing renders out of a database. The only dynamic path is the contact
+form. It validates in the browser with React Hook Form and Zod, posts to `/api/contact`,
+and the Route Handler re-runs the same schema on the server, behind a per-IP rate limit
+and a 10 KB body cap. Resend delivers the message. If `RESEND_API_KEY` is missing the
+handler returns a controlled error and the WhatsApp button remains as the fallback.
+
+## Project Structure
 
 ```
 Trak-Acessoria/
 ├── app/
-│   ├── layout.tsx              # Root layout: fontes, ThemeProvider, Header/Footer
-│   ├── page.tsx                # Página única (compõe as seções)
-│   ├── globals.css             # Tailwind v4 + tokens CSS
-│   ├── not-found.tsx           # Página 404
-│   ├── sitemap.ts / robots.ts  # Sitemap e robots gerados
-│   ├── privacidade/            # Política de Privacidade (LGPD)
-│   ├── storyboard/             # Página de teste de componentes (dev only)
-│   └── api/contact/route.ts    # POST /api/contact (valida e envia e-mail via Resend)
+│   ├── layout.tsx              # Fonts, ThemeProvider, Header and Footer
+│   ├── page.tsx                # Single page, composes the poster sections
+│   ├── globals.css             # Tailwind v4 and CSS tokens
+│   ├── not-found.tsx           # Styled 404
+│   ├── sitemap.ts, robots.ts   # Generated sitemap and robots
+│   ├── privacidade/            # Privacy policy (LGPD)
+│   ├── storyboard/             # Component gallery, development only
+│   └── api/contact/route.ts    # POST /api/contact
 ├── components/
-│   ├── ui/                     # Primitivos shadcn/ui
-│   ├── layout/                 # Header, mobile-nav, footer, consent-banner, analytics-tracker
-│   └── sections/               # Hero, marquee, services, projects, team, contact, faq…
-├── data/                       # Conteúdo editável (ver seção abaixo)
-├── lib/                        # utils, seo (JSON-LD), analytics, contact (Resend), schemas Zod
-├── hooks/                      # useScrollDepth, useScrollPosition, useReducedMotion, useSectionObserver
-├── types/                      # Tipos compartilhados
-├── art/                        # Ilustrações SVG autorais
-├── e2e/                        # Testes Playwright (smoke, seo, consent, privacidade)
-├── vitest.config.mts           # Config do Vitest + gate de cobertura
-├── vitest.setup.ts             # Setup: jest-dom + mocks (matchMedia, Intersection/ResizeObserver)
-├── playwright.config.ts        # E2E: 3 browsers + mobile 375px (porta 3100)
-└── .github/workflows/ci.yml    # CI: lint + typecheck + vitest + coverage + playwright
+│   ├── ui/                     # shadcn/ui primitives
+│   ├── layout/                 # Header, mobile nav, footer, consent bar, analytics
+│   └── sections/               # Hero, marquee, services, projects, team, faq, contact
+├── data/                       # All editable copy, one module per section
+├── lib/                        # utils, seo (JSON-LD), analytics, contact, rate limit, schemas
+├── hooks/                      # Scroll depth, scroll position, reduced motion, section observer
+├── e2e/                        # Playwright specs: smoke, seo, consent, privacidade
+├── docs/assets/                # Screenshots used in this README
+├── PRD.md                      # Full product specification
+├── FASE-6.md                   # Final QA and deploy checklist
+└── AGENTS.md                   # Next.js 16 breaking-change notice for coding agents
 ```
 
----
+Content lives entirely in `data/`, one file per section: `site.ts` (name, tagline,
+contact details, navigation and socials), `services.ts`, `projects.ts`, `team.ts`,
+`faq.ts`, `marquee.ts` and `privacidade.ts`. Editing copy means editing those files,
+never a component.
 
-## 📋 Pré-requisitos
+## Getting Started
 
-| Ferramenta | Versão | Como verificar |
-|---|---|---|
-| **Node.js** | **≥ 22** (LTS) | `node --version` |
-| **npm** | ≥ 10 (vem com o Node) | `npm --version` |
-| **Git** | qualquer recente | `git --version` |
+### Prerequisites
 
-> 💡 Recomendamos o Node 22 LTS. O CI do projeto roda na versão 22 — manter localmente a mesma
-> versão evita diferenças de comportamento.
+| Tool | Version | Check with |
+| --- | --- | --- |
+| Node.js | 22 or newer, declared in `engines` | `node --version` |
+| npm | 10 or newer, ships with Node | `npm --version` |
 
----
-
-## 🚀 Como rodar localmente (passo a passo)
-
-### 1. Clonar o repositório
+### Installation
 
 ```bash
-git clone git@github.com:tavinholoco/Trak-Acessoria.git
+git clone https://github.com/tavinholoco/Trak-Acessoria.git
 cd Trak-Acessoria
-```
-
-### 2. Instalar as dependências
-
-```bash
 npm install
-```
-
-### 3. Configurar as variáveis de ambiente
-
-O projeto usa variáveis de ambiente para e-mail, WhatsApp e analytics. Existe um modelo em
-`.env.example` — copie-o e preencha:
-
-```bash
 cp .env.example .env.local
-```
-
-> ⚠️ `.env.local` está no `.gitignore` e **nunca** deve ser commitado (contém a chave da API do Resend).
-> O arquivo `.env.example` é o único versionado.
-
-Abra o `.env.local` e preencha os valores:
-
-| Variável | Obrigatória? | Descrição |
-|---|---|---|
-| `CONTACT_EMAIL` | ✅ | E-mail que recebe os contatos do formulário |
-| `WHATSAPP` | ✅ | Número do WhatsApp no formato `5511999990000` |
-| `RESEND_API_KEY` | ✅ | Chave da API do Resend (`re_...`). Crie uma conta gratuita em [resend.com](https://resend.com) |
-| `RESEND_FROM` | ❌ | Remetente. Padrão: `Trak Assessoria <onboarding@resend.dev>` |
-| `NEXT_PUBLIC_SITE_URL` | ✅ | URL pública (canonical, sitemap, OG). Local: `http://localhost:3000` |
-| `NEXT_PUBLIC_ANALYTICS` | ❌ | `plausible` para ativar analytics (opcional, com consentimento LGPD) |
-| `NEXT_PUBLIC_ANALYTICS_DOMAIN` | ❌ | Domínio no provider de analytics (usar junto do analytics) |
-| `NEXT_PUBLIC_ANALYTICS_SCRIPT_URL` | ❌ | URL do script do provider (padrão: `https://plausible.io/js/script.js`; use para self-hosted) |
-
-### 4. Subir o servidor de desenvolvimento
-
-```bash
 npm run dev
 ```
 
-Abra **http://localhost:3000** no navegador. A página recarrega automaticamente a cada alteração
-(hot reload).
+The site is served at http://localhost:3000. The component gallery is at
+http://localhost:3000/storyboard in development.
 
-> 🎨 Dica: a página de **storyboard** (teste visual dos componentes) fica em
-> **http://localhost:3000/storyboard** (dev only).
+### Environment variables
 
-### 5. (Opcional) Testar o envio de e-mail do formulário
+Copy `.env.example` to `.env.local` and fill it in. `.env.local` is gitignored and must
+never be committed.
 
-Para o formulário enviar e-mails de verdade, a `RESEND_API_KEY` precisa ser válida. Sem ela, o
-formulário continua validando, mas o envio retorna erro — o WhatsApp funciona como canal reserva.
+| Variable | Description | Required |
+| --- | --- | --- |
+| `RESEND_API_KEY` | Resend API key. Without it the form still validates, but delivery returns a controlled error | Yes, to send email |
+| `CONTACT_EMAIL` | Inbox that receives form submissions. Falls back to the address in `lib/contact.ts` | No |
+| `RESEND_FROM` | Verified Resend sender. Falls back to `onboarding@resend.dev` | No |
+| `NEXT_PUBLIC_SITE_URL` | Public URL used for canonical links, sitemap and Open Graph | No |
+| `NEXT_PUBLIC_ANALYTICS` | Set to `plausible` to enable analytics, gated by LGPD consent | No |
+| `NEXT_PUBLIC_ANALYTICS_DOMAIN` | Domain registered with the analytics provider | No |
+| `NEXT_PUBLIC_ANALYTICS_SCRIPT_URL` | Provider script URL, for self-hosted Plausible | No |
 
----
+## Scripts
 
-## 📜 Scripts disponíveis
-
-| Comando | O que faz |
-|---|---|
-| `npm run dev` | Servidor de desenvolvimento (`http://localhost:3000`) |
-| `npm run build` | Build de produção (Next.js) |
-| `npm run start` | Serve a build de produção (após `build`) |
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Development server at http://localhost:3000 |
+| `npm run build` | Production build |
+| `npm run start` | Serves the production build |
 | `npm run lint` | ESLint |
-| `npx tsc --noEmit` | Typecheck (sem emitir arquivos) |
-| `npm run test:run` | Testes unitários/componentes (uma vez) |
-| `npm test` | Testes em **watch mode** |
-| `npm run test:coverage` | Testes + relatório de cobertura com **gate** (statements ≥ 80%, branches ≥ 70%, functions ≥ 80%, lines ≥ 85%) |
-| `npm run test:e2e` | E2E Playwright (Chromium, Firefox, WebKit, mobile 375px) |
-| `npm run test:e2e:ui` | E2E com **UI mode** (debugging interativo) |
-| `npm run test:e2e:report` | Abre o relatório HTML do último run |
+| `npm run typecheck` | TypeScript check, no emit |
+| `npm test` | Unit and component tests in watch mode |
+| `npm run test:run` | Unit and component tests, single run |
+| `npm run test:coverage` | Tests plus coverage report, with the threshold gate |
+| `npm run test:e2e` | Playwright suite across four browser targets |
+| `npm run test:e2e:ui` | Playwright UI mode for interactive debugging |
+| `npm run test:e2e:report` | Opens the HTML report of the last run |
 
----
+## Tests
 
-## 🧪 Testes e qualidade
+| Layer | Tool | What it covers |
+| --- | --- | --- |
+| Unit | Vitest with jsdom | `data/*`, `lib/*` helpers, hooks, Zod schemas and the Route Handler with Resend mocked |
+| Component | Testing Library, jest-dom, user-event | Component behaviour and accessibility |
+| E2E | Playwright with axe-core | Anchor navigation, dark mode, mobile menu, contact form, LGPD consent and WCAG AA audits |
 
-O projeto usa uma **pirâmide de testes** (PRD §13):
-
-| Camada | Ferramenta | O que valida |
-|---|---|---|
-| **Unit** | Vitest (jsdom) | Lógica pura: `data/*`, `lib/utils`, hooks, schemas Zod, API Route (Resend mockado) |
-| **Componente** | Testing Library + jest-dom + user-event | Comportamento e acessibilidade dos componentes |
-| **E2E** | Playwright + axe-core | Fluxos reais: âncoras, dark mode, menu mobile, formulário, consentimento LGPD, WCAG AA |
-
-**Rodando os testes:**
+The unit and component suite holds **132 tests across 33 files**, all passing on the last
+local run. The E2E suite has **18 specs**, each executed against four Playwright
+projects: Chromium, Firefox, WebKit and a 375px mobile viewport.
 
 ```bash
-# Unit/componente (uma vez)
 npm run test:run
 
-# E2E — na primeira vez, baixe os navegadores:
 npx playwright install
 npm run test:e2e
 ```
 
-> O E2E sobe um servidor próprio na **porta 3100** (`npm run build && npm run start -p 3100`),
-> para não conflitar com o `npm run dev` (porta 3000).
+The E2E run builds the app and serves it on port 3100, so it never collides with
+`npm run dev` on port 3000.
 
-**Checklist de qualidade antes de abrir um PR:**
+Coverage is gated in `vitest.config.mts` at 80% statements, 70% branches, 80% functions
+and 85% lines. The full check before opening a pull request:
 
 ```bash
-npm run lint && npx tsc --noEmit && npm run test:run && npm run test:coverage
+npm run lint && npm run typecheck && npm run test:run && npm run test:coverage
 ```
 
----
+## Deploy
 
-## ✏️ Como editar o conteúdo
+CI runs on every push to `main` or `master` and on every pull request, defined in
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml):
 
-Todo o conteúdo da página fica isolado em `data/` — edite os arquivos **sem tocar em componentes**:
+- **quality:** `npm ci`, `npm run lint`, `npm run typecheck`, `npm run test:run`,
+  `npm run test:coverage`
+- **e2e:** `npm ci`, installs Chromium, Firefox and WebKit, then `npx playwright test`,
+  uploading the Playwright HTML report as an artifact when the job fails
 
-| Arquivo | Conteúdo |
-|---|---|
-| `data/site.ts` | Nome, tagline, descrição, e-mail, WhatsApp, URL e redes sociais |
-| `data/services.ts` | Os 6 serviços (grid da seção Serviços) |
-| `data/projects.ts` | Cases/pôsteres com métricas (seção Projetos) |
-| `data/team.ts` | Integrantes e mini-bios (seção Equipe) |
-| `data/faq.ts` | Perguntas do accordion (seção Dúvidas) |
-| `data/marquee.ts` | Itens do marquee infinito e headline do banner |
-| `data/privacidade.ts` | Política de Privacidade (LGPD) |
+The site is hosted on Vercel at https://trak-assessoria.vercel.app. Next.js is detected
+automatically, so the default build command applies. The environment variables above have
+to be set for Production and Preview in the project settings. The full release checklist
+is in [`FASE-6.md`](FASE-6.md).
 
----
+## Roadmap
 
-## 🔍 SEO, performance e analytics
+- [x] One-page landing with all seven sections
+- [x] Contact form with Resend delivery and rate limiting
+- [x] Dark mode, reduced-motion support and WCAG AA audits
+- [x] Technical SEO, JSON-LD, LGPD consent and privacy policy
+- [x] CI with lint, typecheck, coverage gate and cross-browser E2E
+- [ ] MDX blog for content SEO
+- [ ] Individual pages per service
+- [ ] CRM integration (HubSpot or Sheets) on form submit
+- [ ] Internationalisation
+- [ ] Headless CMS (Sanity or Contentlayer) so the client can edit alone
+- [ ] Nonce-based CSP through middleware, removing `unsafe-inline`
 
-- **Metadados** globais (title/description/OG/Twitter/canonical) em `app/layout.tsx`.
-- `sitemap.xml` e `robots.txt` gerados automaticamente em `/`.
-- **JSON-LD** (Organization + ProfessionalService) em `lib/seo.ts`.
-- **Imagens otimizadas** com `next/image` (AVIF/WebP) e fontes auto-otimizadas via `next/font`.
-- **Vercel Speed Insights** coleta Core Web Vitals anônimos em produção — sem cookies.
-- **Analytics opcional** (compatível com Plausible): só ativa após o consentimento LGPD no banner.
-- **Política de Privacidade** em `/privacidade` (link no rodapé e no banner de consentimento).
+## License
 
----
+Distributed under the MIT License. See [LICENSE](LICENSE) for details.
 
-## 🤖 CI/CD e Deploy
+## Author
 
-### CI — GitHub Actions
+**Pedro Levi Dias**, Fullstack Developer
 
-O workflow `.github/workflows/ci.yml` roda em todo **push/PR** para `main`/`master`:
-
-- **Job `quality`:** `npm ci` → `npm run lint` → `npx tsc --noEmit` → `npm run test:run` → `npm run test:coverage`
-- **Job `e2e`:** `npm ci` → instala os 3 navegadores → `npx playwright test` (4 projetos) → relatório
-  HTML anexado em caso de falha.
-
-### Deploy — Vercel
-
-1. Crie/logue na conta em [vercel.com](https://vercel.com) e importe o repositório `Trak-Acessoria`
-   (Add New → Project → Import Git Repository).
-2. Framework **Next.js** (auto-detectado); build command `npm run build` (padrão).
-3. Em **Settings → Environment Variables**, adicione (Production e Preview):
-   `CONTACT_EMAIL`, `WHATSAPP`, `RESEND_API_KEY`, `RESEND_FROM`, `NEXT_PUBLIC_SITE_URL`,
-   e, se desejar analytics, `NEXT_PUBLIC_ANALYTICS` + `NEXT_PUBLIC_ANALYTICS_DOMAIN`
-   (+ `NEXT_PUBLIC_ANALYTICS_SCRIPT_URL` se usar Plausible self-hosted).
-4. Clique em **Deploy**. O checklist completo da Fase 6 está em [`FASE-6.md`](FASE-6.md).
-
-> Sem domínio próprio (decisão do PRD): a página fica na URL padrão da Vercel, ex.
-> `https://trak-assessoria.vercel.app`.
-
----
-
-## 📄 Documentação relacionada
-
-| Documento | Conteúdo |
-|---|---|
-| [`PRD.md`](PRD.md) | Especificação completa do produto (escopo, design system, fases, testes) |
-| [`FASE-6.md`](FASE-6.md) | Checklist executável de QA final e deploy na Vercel |
-| [`AGENTS.md`](AGENTS.md) | Aviso de breaking changes do Next.js 16 (para agentes/LLMs) |
-
----
-
-## 🗺️ Roadmap (pós-v1)
-
-- Blog institucional (Next.js MDX) para SEO de conteúdo.
-- Páginas individuais por serviço.
-- Integração com CRM (HubSpot/Sheets) no envio do formulário.
-- Multi-idioma (i18n).
-- CMS headless (Sanity/Contentlayer) para o cliente editar sozinho.
+[GitHub](https://github.com/tavinholoco) · [LinkedIn](https://www.linkedin.com/in/pedro-levi-dias-96720126a/) · [Portfolio](https://portfolio-tau-five-f86nc5khr8.vercel.app/)
