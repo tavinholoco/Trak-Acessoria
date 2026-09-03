@@ -17,7 +17,7 @@ export const site = {
    * Sem domínio próprio (decisão do cliente): sobrescreva via NEXT_PUBLIC_SITE_URL
    * no deploy (Vercel) ou use a URL padrão da Vercel.
    */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://trak-assessoria.vercel.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://trak-acessoria.vercel.app",
 
   email: "contato@trakassessoria.com.br",
 

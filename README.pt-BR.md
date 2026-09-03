@@ -1,8 +1,8 @@
-# Trak-Acessoria
+# Trak Assessoria
 
 Landing page one-page de uma assessoria do mercado de arte, feita com Next.js 16 e App Router.
 
-[![CI](https://github.com/tavinholoco/Trak-Acessoria/actions/workflows/ci.yml/badge.svg)](https://github.com/tavinholoco/Trak-Acessoria/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/tavinholoco/Trak-Acessoria/ci.yml?branch=master&style=for-the-badge&label=CI)](https://github.com/tavinholoco/Trak-Acessoria/actions/workflows/ci.yml)
 ![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
 ![Next.js](https://img.shields.io/badge/Next.js-16.2-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 ![React](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)
@@ -11,17 +11,17 @@ Landing page one-page de uma assessoria do mercado de arte, feita com Next.js 16
 
 [English](README.md) | **Português**
 
-**Site publicado:** https://trak-assessoria.vercel.app
+[Ver em produção](https://trak-acessoria.vercel.app) · [Especificação do produto](PRD.md)
 
 ## Índice
 
-- [Prévia](#prévia)
+- [Screenshots](#screenshots)
 - [Sobre](#sobre)
 - [Funcionalidades](#funcionalidades)
 - [Stack](#stack)
 - [Arquitetura](#arquitetura)
 - [Estrutura do projeto](#estrutura-do-projeto)
-- [Como rodar](#como-rodar)
+- [Como rodar localmente](#como-rodar-localmente)
 - [Scripts](#scripts)
 - [Testes](#testes)
 - [Deploy](#deploy)
@@ -29,7 +29,7 @@ Landing page one-page de uma assessoria do mercado de arte, feita com Next.js 16
 - [Licença](#licença)
 - [Autor](#autor)
 
-## Prévia
+## Screenshots
 
 | Tema escuro (padrão) | Tema claro |
 | --- | --- |
@@ -148,7 +148,7 @@ dados de contato, navegação e redes), `services.ts`, `projects.ts`, `team.ts`,
 `marquee.ts` e `privacidade.ts`. Editar texto é editar esses arquivos, nunca um
 componente.
 
-## Como rodar
+## Como rodar localmente
 
 ### Pré-requisitos
 
@@ -164,11 +164,7 @@ git clone https://github.com/tavinholoco/Trak-Acessoria.git
 cd Trak-Acessoria
 npm install
 cp .env.example .env.local
-npm run dev
 ```
-
-O site sobe em http://localhost:3000. A galeria de componentes fica em
-http://localhost:3000/storyboard, só em desenvolvimento.
 
 ### Variáveis de ambiente
 
@@ -184,6 +180,15 @@ nunca deve ser commitado.
 | `NEXT_PUBLIC_ANALYTICS` | Use `plausible` para ativar o analytics, condicionado ao consentimento LGPD | Não |
 | `NEXT_PUBLIC_ANALYTICS_DOMAIN` | Domínio cadastrado no provider de analytics | Não |
 | `NEXT_PUBLIC_ANALYTICS_SCRIPT_URL` | URL do script do provider, para Plausible self-hosted | Não |
+
+### Execução
+
+```bash
+npm run dev
+```
+
+O site sobe em http://localhost:3000. A galeria de componentes fica em
+http://localhost:3000/storyboard, só em desenvolvimento.
 
 ## Scripts
 
@@ -240,7 +245,7 @@ O CI roda a cada push em `main` ou `master` e em todo pull request, definido em
 - **e2e:** `npm ci`, instala Chromium, Firefox e WebKit, depois `npx playwright test`,
   subindo o relatório HTML do Playwright como artefato quando o job falha
 
-O site está hospedado na Vercel em https://trak-assessoria.vercel.app. O Next.js é
+O site está hospedado na Vercel em https://trak-acessoria.vercel.app. O Next.js é
 detectado automaticamente, então vale o build command padrão. As variáveis de ambiente
 acima precisam estar configuradas em Production e Preview nas configurações do projeto.
 O checklist completo de publicação está em [`FASE-6.md`](FASE-6.md).
@@ -265,6 +270,6 @@ Distribuído sob a licença MIT. Veja [LICENSE](LICENSE) para detalhes.
 
 ## Autor
 
-**Pedro Levi Dias**, Desenvolvedor Fullstack
+**Pedro Levi Dias** — Desenvolvedor Fullstack
 
 [GitHub](https://github.com/tavinholoco) · [LinkedIn](https://www.linkedin.com/in/pedro-levi-dias-96720126a/) · [Portfólio](https://portfolio-tau-five-f86nc5khr8.vercel.app/)
